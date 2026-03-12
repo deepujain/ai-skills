@@ -1,6 +1,6 @@
 # ai-skills
 
-Coding agents have changed how software is built forever. What matters is the **skills** or **context** given to them—this repository captures those skills. It starts with a small subset (recipes for contributing to OSS projects); contribute any AI skill that improves the responses an agent gives back.
+Coding agents have changed how software is built forever. A proper working context, which is really a skill, can drastically improve the responses and the actions taken by the AI models that power these agents. What matters is the **skills** or **context** given to them; this repository captures those skills. It starts with a small subset (recipes for contributing to OSS projects); contribute any AI skill that improves the responses an agent gives back.
 
 **Current skills** focus on OSS contribution: open issues, implement fixes, and land PRs. Each skill gives your agent the workflows, conventions, and checklists for a specific project. Use with Cursor, Claude, ChatGPT, or any agent that can follow structured instructions.
 

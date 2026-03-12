@@ -9,6 +9,7 @@ Recipes for AI coding agents to open issues, implement fixes, and land PRs in Ap
 | **Apache Hadoop** | HADOOP, HDFS, YARN, MAPREDUCE — JIRA, Yetus CI, Maven |
 | **Apache Spark** | SPARK (SQL, Core, PySpark, etc.) — JIRA, sbt, GitHub Actions |
 | **Apache Airflow** | Core, providers — GitHub issues, prek, breeze, Helm |
+| **OpenClaw** | openclaw/openclaw — GitHub issues, pnpm, contributor workflow |
 
 More projects can be added the same way: one skill per project, with issue flow, branch/commit rules, CI, and PR conventions.
 
@@ -26,6 +27,7 @@ ai-skills/
       hadoop/                 # Apache Hadoop PR (JIRA, Yetus CI, Maven)
       spark/                  # Apache Spark PR (JIRA, sbt, GitHub Actions)
       airflow/                # Apache Airflow PR (GitHub issues, prek, breeze)
+    openclaw/                 # OpenClaw PR (GitHub issues, pnpm)
 ```
 
 ## Skills
@@ -35,6 +37,7 @@ ai-skills/
 | **Hadoop PR** | [oss-contribution/apache/hadoop/SKILL.md](oss-contribution/apache/hadoop/SKILL.md) | New or existing Hadoop/HDFS/YARN PR; JIRA; Yetus CI; "work on this Hadoop PR" with URL. |
 | **Spark PR** | [oss-contribution/apache/spark/SKILL.md](oss-contribution/apache/spark/SKILL.md) | New or existing Spark PR; JIRA (SPARK-xxxxx); sbt tests; "here is my Spark PR URL — take actions". |
 | **Airflow PR** | [oss-contribution/apache/airflow/SKILL.md](oss-contribution/apache/airflow/SKILL.md) | New or existing Airflow PR; GitHub issues; prek, breeze, Helm tests. |
+| **OpenClaw PR** | [oss-contribution/openclaw/SKILL.md](oss-contribution/openclaw/SKILL.md) | New OpenClaw PR; GitHub issues; pnpm; "follow the openclaw PR recipe". |
 
 ## How to use
 

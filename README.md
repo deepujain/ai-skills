@@ -1,7 +1,6 @@
 # ai-skills
 
-**Anyone with an AI coding agent can start building high-quality contributions to any project.**  
-These skills give your agent the exact workflows, conventions, and checklists for each project—so you can open an issue, implement a fix, run the right tests, and land a PR that meets project standards. Use with Claude, Cursor, ChatGPT, or any agent that can follow structured instructions.
+Recipes for AI coding agents to open issues, implement fixes, and land PRs in Apache and other OSS projects. Each skill gives your agent the workflows, conventions, and checklists for a specific project—so you can contribute PRs that meet that project’s standards. Use with Cursor, Claude, ChatGPT, or any agent that can follow structured instructions.
 
 **Currently supported projects:**
 

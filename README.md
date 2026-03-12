@@ -1,6 +1,21 @@
 # ai-skills
 
-Structured prompts and recipes for AI-assisted workflows. Use these with Claude, Cursor, ChatGPT, or other coding agents. Organized by **use case** (e.g. open source contribution); vendor-specific overrides can go under `vendor/` later.
+**Anyone with an AI coding agent can start building high-quality contributions to any project.**  
+These skills give your agent the exact workflows, conventions, and checklists for each project—so you can open an issue, implement a fix, run the right tests, and land a PR that meets project standards. Use with Claude, Cursor, ChatGPT, or any agent that can follow structured instructions.
+
+**Currently supported projects:**
+
+| Project | Scope |
+|--------|--------|
+| **Apache Hadoop** | HADOOP, HDFS, YARN, MAPREDUCE — JIRA, Yetus CI, Maven |
+| **Apache Spark** | SPARK (SQL, Core, PySpark, etc.) — JIRA, sbt, GitHub Actions |
+| **Apache Airflow** | Core, providers — GitHub issues, prek, breeze, Helm |
+
+More projects can be added the same way: one skill per project, with issue flow, branch/commit rules, CI, and PR conventions.
+
+---
+
+Structured prompts and recipes for AI-assisted workflows. Organized by **use case** (e.g. open source contribution); vendor-specific overrides can go under `vendor/` later.
 
 ## Structure
 

@@ -8,6 +8,31 @@ Refresh trigger: before every replenishment run and whenever repository policy c
 Read the shared references/contribution-queues.md policy before treating this
 target as actionable.
 
+## 2026-09-05 sweep state (5:29 PM PT)
+
+- **Open (5/5):** #11095, #10818, #10705, #10704, and #10311. No authored PR
+  departed, and the live default contributor cap remains 5. No sixth PR was
+  created.
+- **Maintain:** fresh remote refs still resolve `main` to `afb2342666`. Exact
+  heads remain #11095 `af965fd850`, #10818 `e1d2aa3653`, #10705
+  `8e939f082e`, #10704 `db2137c058`, and #10311 `fbbee00099`; every branch is
+  zero commits behind. No rebase or PR-branch push was needed.
+- **Identity:** GitHub's public commit API reports all 19 commits
+  `verified=true`, `reason=valid`; all 19 contain the required Deepak Jain DCO
+  trailer.
+- **Review and CI:** CodeRabbit remains successful on all five heads, and no
+  Greptile result is reported. All visible fork-triggered workflows remain
+  `action_required` pending NVIDIA vetter approval. Contributor-actionable
+  threads are resolved. #10311 retains two unresolved requests for live Gemini
+  proof that requires maintainer credentials and infrastructure.
+- **Learn:** the latest ten merged peer PRs (#11070, #11044, #10528, #11011,
+  #10889, #11102, #11101, #11100, #11013, and #10910) repeat existing rules
+  for outcome-first descriptions, real integration proof, fail-closed security,
+  exact configuration ownership, and revision-bound documentation. No skill
+  update was warranted.
+- **Replenish:** no slot is eligible because the authored-open count, target,
+  and live maximum are all exactly 5.
+
 ## 2026-09-05 sweep state (10:41 AM PT)
 
 - **Open (5/5):** #11095, #10818, #10705, #10704, and #10311. The live

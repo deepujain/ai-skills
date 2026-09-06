@@ -41,6 +41,11 @@ target as actionable.
   warranted.
 - **Replenish:** no slot is eligible because the authored-open count, target,
   and live maximum are all exactly 5.
+- **Delivery refresh (11:56 AM PT):** the post-publication author-scoped query
+  returned the same five PRs. Fresh remote refs kept `main` at `5b14e5c299`
+  and every exact head at zero commits behind. CodeRabbit remained successful,
+  fork workflows remained `action_required`, and #10311's two maintainer-only
+  proof threads were the only unresolved threads.
 
 ## 2026-09-05 sweep state (5:29 PM PT)
 

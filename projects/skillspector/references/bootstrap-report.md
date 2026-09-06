@@ -113,3 +113,19 @@ security-vulnerability disclosure ([SECURITY.md](https://github.com/NVIDIA/Skill
 - Refresh immediately before work selection because 38 PRs were open during
   this snapshot. Refresh after a contributor PR transitions or any CI/policy
   workflow changes.
+
+## 2026-09-06 public-evidence refresh
+
+- The live public pull-request listing reports 51 open PRs. It still shows
+  authored PRs #434, #436, #468, and #469; the retained 2026-09-04 project
+  receipt also records #428 as the fifth authored open PR. The public listing
+  was sufficient to refresh queue presence but not to certify every exact PR
+  head, check, review, conflict, or signature state.
+- `CONTRIBUTING.md` continues to require an issue, fork and branch, passing
+  tests, DCO sign-off, lint/format, SPDX headers on new source, and analyzer
+  tests/fixtures. The current CI still uses Python 3.12 and runs lint,
+  format-check, `make test-ci`, conditional Docker smoke, and DCO verification.
+- This host has no `gh` executable and no connected GitHub mutation integration.
+  Public read-only evidence was available, but branch, comment, rebase, CI-log,
+  and PR publication actions require an authenticated path and an isolated
+  SkillSpector checkout before they can be safely performed.

@@ -11,6 +11,45 @@ whenever `CONTRIBUTING.md` or GitHub policy changes
 Read the shared references/contribution-queues.md policy before configuring
 or acting on a target.
 
+## 2026-09-06 authenticated transport sweep
+
+- **Queue:** API evidence identified four currently open authored PRs: #428,
+  #434, #436, and #469. The previous fifth open PR, #468, has merged. The
+  queue is therefore one below the configured target of five.
+- **Maintain:** each branch was eight commits behind `main` at
+  `88eedca754c74260dfae4e6d6cfb293a0053c908`. All four rebased cleanly in an
+  isolated checkout and were pushed to the contributor fork with explicit
+  `--force-with-lease`: #428 `4fcb65d`, #434 `d343305`, #436 `e7bdb5a`, and
+  #469 `45cea3e`. DCO and lint completed successfully on every refreshed
+  head; Docker smoke succeeded where required and was skipped otherwise.
+  `test-unit` remained in progress at the bounded post-push check, so these
+  PRs must not yet be described as fully CI-green.
+- **Review:** #428 has an approval on its pre-rebase head. #434 and #436 have
+  stale `CHANGES_REQUESTED` reviews whose only inline findings are explicitly
+  addressed by the author on their previous heads. All now require exact-head
+  CI completion and maintainer re-review after the rebases.
+- **Replenish:** new issue #487 is already covered by open #488 and #489;
+  #482 is covered by #483; #419 is covered by #421. The unclaimed #485 needs
+  Windows 8.3-path execution unavailable on this macOS host. No qualified,
+  independently verifiable, non-overlapping candidate was available for the
+  single open slot.
+
+## 2026-09-06 public read-only sweep
+
+- **Maintain:** public GitHub evidence confirms the repository currently lists
+  51 open PRs and still exposes authored #434, #436, #468, and #469. The prior
+  2026-09-04 receipt records #428 as the remaining authored PR. No exact-head,
+  check, review-thread, conflict, DCO, or branch-freshness claim is made: this
+  host lacks `gh`, an authenticated GitHub integration, and an isolated clone.
+- **Learn:** `CONTRIBUTING.md` and `ci.yml` continue to establish the existing
+  DCO, test, lint, format, SPDX, and analyzer-fixture rules. No durable lesson
+  differs from the current project skill and learning log.
+- **Replenish:** the configured target is 5 open contributions and the retained
+  queue has five authored PRs. No candidate was selected or published because
+  the required issue screening, checkout, validation, signed commit, and fork
+  push cannot be completed safely without authenticated GitHub and Git
+  transport. Re-run the full queue recipe when that access is available.
+
 ## 2026-09-04 sweep state (8:56 AM PT project lifecycle)
 
 - **Departed since 2026-09-03 7:17 PM PT:** none. Authored open PRs remain

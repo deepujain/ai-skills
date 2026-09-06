@@ -8,6 +8,40 @@ Refresh trigger: before every replenishment run and whenever repository policy c
 Read the shared references/contribution-queues.md policy before treating this
 target as actionable.
 
+## 2026-09-06 sweep state (11:54 AM PT)
+
+- **Open (5/5):** #11095, #10818, #10705, #10704, and #10311 remain open.
+  The live default contributor cap remains 5, so no sixth PR was created.
+- **Maintain:** `main` advanced five commits to `5b14e5c299`. All five PR
+  stacks were rebased without conflict, validated, and pushed with exact
+  old-head leases. New heads are #11095 `af22ee5c8`, #10818 `085be6d53`,
+  #10705 `321ac7e85`, #10704 `6354f906d`, and #10311 `88768c0db`.
+- **Verification:** #11095 passed strict docs validation with zero errors and
+  five warnings. Focused tests passed 16/16 for #10818, 5/5 for #10705,
+  132/132 for #10704, and 262 with one intentional skip for #10311. All five
+  heads passed `npm run validate:pr`.
+- **Identity:** GitHub accepted temporary signing preflight `447327b67` as
+  `verified=true`, `reason=valid`. Every one of the 19 rewritten commits
+  cryptographically verifies against that same GitHub-recognized SSH key,
+  fingerprint `SHA256:xk9gnP/BEr4xslTGkiS8sEO8POnsQLKpMTRfZcsTM8c`, and
+  carries the required DCO trailer. GitHub's public REST quota was exhausted
+  before the redundant per-commit verification-field batch could complete.
+- **Review and CI:** CodeRabbit reports success on every exact head. All
+  visible fork-triggered workflows are `action_required` pending NVIDIA
+  vetter approval. Contributor-actionable threads are resolved. #10311 retains
+  two requests for credential-backed Gemini runtime proof that require
+  maintainer secrets and infrastructure.
+- **Metadata authority:** the connected GitHub integration returned 403 for
+  both PR-body and status-comment writes, and `gh` is unavailable. The exact
+  denied metadata updates are reported rather than claimed as published.
+- **Learn:** the latest ten merged peer PRs (#11125, #11068, #11121, #11048,
+  #11120, #11070, #11044, #10528, #11011, and #10889) repeat existing rules
+  for measured performance evidence, exact-head approval, bounded retries,
+  real integration boundaries, and fail-closed security. No skill update was
+  warranted.
+- **Replenish:** no slot is eligible because the authored-open count, target,
+  and live maximum are all exactly 5.
+
 ## 2026-09-05 sweep state (5:29 PM PT)
 
 - **Open (5/5):** #11095, #10818, #10705, #10704, and #10311. No authored PR

@@ -8,6 +8,45 @@ Refresh trigger: before every replenishment run and whenever repository policy c
 Read the shared references/contribution-queues.md policy before treating this
 target as actionable.
 
+## 2026-09-07 sweep state (11:04 AM PT)
+
+- **Open (5/5):** #11095, #10818, #10705, #10704, and #10311 remain open.
+  The live default contributor cap remains 5, so no sixth PR was created.
+- **Maintain:** `main` advanced eight commits to `ef80bcb9ac`. All five PR
+  stacks were rebased and pushed with exact old-head leases. New heads are
+  #11095 `03d3546b2`, #10818 `aa3d6d0e1`, #10705 `4fccd117f`, #10704
+  `ad0b0dc90`, and #10311 `7e35d7931`.
+- **Conflict resolution:** #10311 conflicted in
+  `src/lib/onboard/inference-selection-validation.test.ts`. The resolution
+  retained current-main Gemini behavior and the PR's runtime-404 regression
+  test; the complete focused and broad validation passed afterward.
+- **Verification:** #11095 passed strict docs validation with zero errors and
+  five warnings. Focused tests passed 16/16 for #10818, 5/5 for #10705,
+  132/132 for #10704, and 299 with one intentional skip for #10311. All five
+  exact heads passed the direct pre-commit, commitlint, pre-push, and diff
+  gates.
+- **Identity:** GitHub accepted temporary signing preflight `21303eca4` as
+  `verified=true`, `reason=valid`. Every one of the 19 rewritten commits
+  cryptographically verifies against that same GitHub-recognized SSH key,
+  fingerprint `SHA256:xk9gnP/BEr4xslTGkiS8sEO8POnsQLKpMTRfZcsTM8c`, and
+  carries the required Deepak Jain DCO trailer.
+- **Review and CI:** all five published heads are mergeable. CodeRabbit is
+  successful on #10818, #10705, #10704, and #10311 and pending on newly
+  pushed #11095. All visible fork-triggered workflows are `action_required`
+  pending NVIDIA vetter approval. Contributor-actionable threads are resolved.
+  #10705 still requires qualified dual-architecture runtime-bundle publication,
+  and #10311 retains two requests for credential-backed Gemini runtime proof
+  that require maintainer secrets and infrastructure.
+- **Learn:** the latest ten merged peer PRs (#11171, #11170, #11157, #11136,
+  #11124, #11110, #11126, #11122, #11125, and #11068) repeat existing rules
+  for smallest owning boundaries, fail-closed security, composed state-handoff
+  proof, exact-candidate evidence, and honest external-gate disclosure. No
+  skill update was warranted.
+- **Replenish:** no slot is eligible because the authored-open count, target,
+  and live maximum are all exactly 5.
+- **Delivery refresh:** pending until this Skippy receipt is committed and
+  pushed; earlier observations do not certify the terminal state.
+
 ## 2026-09-06 sweep state (11:54 AM PT)
 
 - **Open (5/5):** #11095, #10818, #10705, #10704, and #10311 remain open.

@@ -44,8 +44,13 @@ target as actionable.
   skill update was warranted.
 - **Replenish:** no slot is eligible because the authored-open count, target,
   and live maximum are all exactly 5.
-- **Delivery refresh:** pending until this Skippy receipt is committed and
-  pushed; earlier observations do not certify the terminal state.
+- **Delivery refresh (11:10 AM PT):** after Skippy receipt commit `ab2bfc9`
+  was pushed, the author-scoped query returned the same five PRs. Fresh remote
+  refs kept `main` at `ef80bcb9ac`, every exact head at the recorded SHA and
+  zero commits behind, and all five PRs mergeable. CodeRabbit is successful on
+  all five exact heads. Fork workflows remain `action_required`, #10705's
+  bundle gate remains qualification-only, and #10311's two credential-backed
+  proof threads remain the only unresolved threads.
 
 ## 2026-09-06 sweep state (11:54 AM PT)
 

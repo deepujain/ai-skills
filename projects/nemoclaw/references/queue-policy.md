@@ -8,6 +8,45 @@ Refresh trigger: before every replenishment run and whenever repository policy c
 Read the shared references/contribution-queues.md policy before treating this
 target as actionable.
 
+## 2026-09-07 sweep state (6:19 PM PT)
+
+- **Open (5/5):** #11095, #10818, #10705, #10704, and #10311 remain open.
+  The live default contributor cap remains 5, so no sixth PR was created.
+- **Maintain:** `main` advanced three commits to `133a1886c3`. All five PR
+  stacks were rebased and pushed with exact old-head leases. New heads are
+  #11095 `409e30fe8`, #10818 `325e4b32b`, #10705 `1144538d6`, #10704
+  `c30b74e64`, and #10311 `634b4c191`.
+- **Conflict resolution:** #10818 conflicted in
+  `ci/source-architecture-budget.json`. The complete repository gate measured
+  shell-quote fan-in at 28, so that one limit was retained while url-utils
+  stayed at current main's stricter limit of 27.
+- **Verification:** #11095 passed strict docs validation with zero errors and
+  five warnings. Focused tests passed 18/18 for #10818, 5/5 for #10705,
+  132/132 for #10704, and 299 with one intentional skip for #10311. All five
+  exact heads passed the direct pre-commit, commitlint, pre-push, and diff
+  gates.
+- **Identity:** GitHub accepted temporary signing preflight `d3f349a96` as
+  `verified=true`, `reason=valid`. Every one of the 19 rewritten commits
+  cryptographically verifies against that same GitHub-recognized SSH key,
+  fingerprint `SHA256:xk9gnP/BEr4xslTGkiS8sEO8POnsQLKpMTRfZcsTM8c`, and
+  carries the required Deepak Jain DCO trailer.
+- **Review and CI:** all five published heads are mergeable. CodeRabbit is
+  successful on #10818, #10705, #10704, and #10311 and remains in progress on
+  #11095. Growth and maintainer-edit checks are green on all five. Advisor
+  specialist lanes produced several successful reviews, while remaining lanes
+  were still running after a bounded ten-minute collection; no new actionable
+  finding had been posted. Exact-head rebase receipts were posted on all five
+  PRs.
+- **External gates:** #10705 still requires qualified dual-architecture
+  runtime-bundle publication. #10311 retains two requests for credential-backed
+  Gemini runtime proof that require maintainer secrets and infrastructure.
+- **Learn:** the latest merged peers and new main commits #11093, #11009, and
+  #11135 repeat existing rules for agent-owned state, typed lifecycle
+  ownership, fail-closed policy, exact evidence, and honest external-gate
+  disclosure. No skill update was warranted.
+- **Replenish:** no slot is eligible because the authored-open count, target,
+  and live maximum are all exactly 5.
+
 ## 2026-09-07 sweep state (11:04 AM PT)
 
 - **Open (5/5):** #11095, #10818, #10705, #10704, and #10311 remain open.

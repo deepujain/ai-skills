@@ -41,6 +41,11 @@ target as actionable.
   harness state, bounded recovery, canonical ownership, and repository-approved
   durable evidence surfaces. No new reusable rule was missing, so no NemoClaw
   skill change was needed.
+- **Delivery refresh:** after signed Skippy receipt `0e3957e` was pushed, live
+  `main` remained `b0d4650c6` and the authored queue remained exactly five.
+  Every recorded head matched GitHub, was mergeable and zero commits behind,
+  had a valid verified signature, and had no nonterminal or failing check run.
+  #11218 retained exact-head approval; no state change reopened maintenance.
 
 ## 2026-09-08 sweep state (10:15 AM PT)
 

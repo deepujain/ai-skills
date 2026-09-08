@@ -8,7 +8,7 @@ Refresh trigger: before every replenishment run and whenever repository policy c
 Read the shared references/contribution-queues.md policy before treating this
 target as actionable.
 
-## 2026-09-08 sweep state (10:26 AM PT, delivery refresh pending)
+## 2026-09-08 sweep state (10:15 AM PT)
 
 - **Departed:** #10704 closed without merge and was superseded by merged
   maintainer replacement #11192. The upstream result preserves Deepak's
@@ -43,6 +43,13 @@ target as actionable.
   overlaps an active MCP-docs PR; #10893 and #10890 have unmet retirement
   criteria; runtime-only candidates lacked their acceptance environment; and
   #9731 was already solved by merged #9785.
+- **Delivery refresh:** after Skippy receipt `aa1bf35` was pushed, the live
+  author query still returned exactly #11095, #10818, #10705, #10311, and
+  #11218. Upstream remained `d10ba0e23`; every PR's recorded head and base
+  matched, every PR was mergeable, and every head was GitHub Verified. Checks
+  were still rerunning. Current failures were limited to AI specialist jobs
+  with empty result artifacts, so they remain disclosed as workflow failures
+  rather than being relabeled as passing or as canonical code findings.
 
 ## 2026-09-07 sweep state (6:19 PM PT)
 

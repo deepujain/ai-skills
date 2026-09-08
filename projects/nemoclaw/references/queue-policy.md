@@ -8,6 +8,42 @@ Refresh trigger: before every replenishment run and whenever repository policy c
 Read the shared references/contribution-queues.md policy before treating this
 target as actionable.
 
+## 2026-09-08 sweep state (10:26 AM PT, delivery refresh pending)
+
+- **Departed:** #10704 closed without merge and was superseded by merged
+  maintainer replacement #11192. The upstream result preserves Deepak's
+  authored commits, so the contribution survived even though the original PR
+  did not merge directly.
+- **Replenishment:** #11214 was created for #11198 with a deterministic injected
+  readiness clock, passed repeated focused and broad verification, and merged
+  during this sweep. Its departure reopened the slot, so #11218 was created for
+  #11159. The queue is therefore exactly 5/5, not six.
+- **Open (5/5):** #11095 `415499909`, #10818 `76b0fc395`, #10705
+  `19d0249ec`, #10311 `5c76165a1`, and #11218 `935b269a1`.
+- **Freshness:** upstream advanced repeatedly during the sweep. Each stack was
+  rebased independently and pushed with an exact old-head lease after every
+  observed advance; the recorded heads are based on `d10ba0e23`.
+- **Verification:** every recorded head passes direct pre-commit, commitlint,
+  pre-push, and `git diff --check origin/main...HEAD` gates. Focused evidence is
+  strict docs with 0 errors/5 warnings for #11095, 18/18 tests for #10818,
+  19/19 for #10705, 299 passes plus 1 intentional skip for #10311, and 84/84
+  CLI dispatch tests for #11218. GitHub reports valid verified signatures and
+  DCO sign-offs on every published commit.
+- **External gates:** #10705 still needs qualified dual-architecture runtime
+  bundle publication. #10311 still needs two credential-backed Gemini runtime
+  proofs from maintainer infrastructure. AI review-specialist jobs have shown
+  workflow/lifecycle failures without canonical code findings and must not be
+  described as green.
+- **Learn:** merged #11178 established a reusable publication rule: automation
+  must use portable Git/GitHub outcomes, reconcile canonical main and exact
+  remote state, bind publication transitions to the verified commit, and leave
+  a draft for human recovery when atomic completion cannot be proved. The
+  NemoClaw skill now records this rule.
+- **Candidate rejects:** #11129 and #10871 have active implementations; #10990
+  overlaps an active MCP-docs PR; #10893 and #10890 have unmet retirement
+  criteria; runtime-only candidates lacked their acceptance environment; and
+  #9731 was already solved by merged #9785.
+
 ## 2026-09-07 sweep state (6:19 PM PT)
 
 - **Open (5/5):** #11095, #10818, #10705, #10704, and #10311 remain open.

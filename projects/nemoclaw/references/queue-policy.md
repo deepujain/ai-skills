@@ -8,6 +8,40 @@ Refresh trigger: before every replenishment run and whenever repository policy c
 Read the shared references/contribution-queues.md policy before treating this
 target as actionable.
 
+## 2026-09-08 sweep state (4:47 PM PT)
+
+- **Open (5/5):** #11218 `567f6e0c8`, #11095 `d64529995`, #10818
+  `a713f0159`, #10705 `95a2d501e`, and #10311 `4441feeea`. No contribution
+  departed during this sweep, so no replenishment was eligible and no sixth PR
+  was created.
+- **Freshness:** `main` advanced to `b0d4650c6`. Every stack was independently
+  rebased and pushed with an exact old-head lease. All five compare at zero
+  commits behind and GitHub reports every head mergeable.
+- **Conflict evidence:** #10818 retained the measured shell-quote architecture
+  budget of 28 while keeping current main's stricter url-utils budget of 25.
+  #10311 preserved current local-provider imports and adopted the centralized
+  probe-token resolver. #11218's maintainer merge contained no independent
+  patch and was safely linearized onto current main.
+- **Verification:** #11218 passed the CLI build, 84/84 focused tests, and strict
+  docs with 0 errors/5 warnings; #11095 passed strict docs with 0/5; #10818
+  passed 18/18 focused tests; #10705 passed 19/19; and #10311 passed 299 tests
+  with one intentional skip. All five passed the nested plugin build, direct
+  pre-commit, commitlint, pre-push, and diff gates. GitHub verifies every
+  published commit signature and DCO.
+- **Review and CI:** every exact-head GitHub check run is terminal success,
+  neutral, or skipped, with no new inline finding. #11218 has exact-head
+  approval from `cv`. GitHub's remaining `BLOCKED` merge state reflects policy
+  gates, not stale branches or conflicts.
+- **External gates:** #10705 still needs qualified dual-architecture runtime
+  bundle publication. #10311 still needs credential-backed Gemini runtime
+  proofs from maintainer infrastructure. These are disclosed as external-only
+  evidence requirements, not contributor-owned failures.
+- **Learn:** merged peers #11241, #11237, #11236, #11233, #11230, #11227,
+  #11226, #11225, #11224, and #11221 reinforce existing guidance for real
+  harness state, bounded recovery, canonical ownership, and repository-approved
+  durable evidence surfaces. No new reusable rule was missing, so no NemoClaw
+  skill change was needed.
+
 ## 2026-09-08 sweep state (10:15 AM PT)
 
 - **Departed:** #10704 closed without merge and was superseded by merged

@@ -8,6 +8,38 @@ Refresh trigger: before every replenishment run and whenever repository policy c
 Read the shared references/contribution-queues.md policy before treating this
 target as actionable.
 
+## 2026-09-08 sweep state (9:25 PM PT)
+
+- **Open (5/5):** #11218 `62abdd134`, #11095 `b30b77daf`, #10818
+  `990f1af29`, #10705 `8a083abd8`, and #10311 `977e34f96`. No PR departed,
+  so replenishment was not eligible and no sixth PR was created.
+- **Freshness:** `main` advanced eight commits to `de7f565dd`. All five stacks
+  rebased cleanly and were pushed independently with exact old-head leases.
+- **Verification:** #11218 passed 84/84 focused tests and strict docs with 0
+  errors/5 warnings; #11095 passed strict docs with 0/5; #10818 passed 18/18;
+  #10705 passed 19/19; and #10311 passed 299 with one intentional skip. Nested
+  builds and exact-head pre-commit, commitlint, pre-push, and diff gates passed
+  on every stack.
+- **Identity:** signing preflight `735bbf969` was GitHub Verified and removed.
+  Every rewritten commit is GitHub Verified with the correct Deepak Jain
+  author, committer, and DCO trailer.
+- **Review and CI:** CodeRabbit is successful on every exact head and no new
+  inline finding appeared. #11218 has exact-head approval. The currently
+  published GitHub check set contains successful repository policy checks and
+  fork-skipped SDK packaging; no Greptile context is present.
+- **External gates:** #10705 still needs qualified dual-architecture runtime
+  bundle publication. #10311 still needs credential-backed Gemini runtime
+  proof from maintainer infrastructure.
+- **Learn:** merged peers #11264, #11247, #11241, #11238, #11237, #11236,
+  #11233, #11230, #11227, and #11226 reinforce existing real-boundary,
+  source-shape, lifecycle, and current-control guidance. This sweep added the
+  missing npm-only validation rule after a mixed pnpm tree caused false TS2883
+  portability failures.
+- **Delivery refresh:** live `main` remained `de7f565dd` and the authored count
+  remained five after all PR mutations. Every recorded head matched, was
+  mergeable and zero commits behind, had a valid GitHub signature, and showed
+  CodeRabbit success with no failing or nonterminal published check.
+
 ## 2026-09-08 sweep state (4:47 PM PT)
 
 - **Open (5/5):** #11218 `567f6e0c8`, #11095 `d64529995`, #10818

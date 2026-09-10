@@ -23,7 +23,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="${SKIPPY_SUMMARY_OUTPUT:-$ROOT/.skippy/sweep-output.log}"
 TS="$("$ROOT/scripts/sweep-timestamp.sh")"
 AUTHOR=deepujain
-ALL_PROJECTS=(skillspector nemoclaw inspect-ai hadoop airflow superset)
+ALL_PROJECTS=(skillspector nemoclaw inspect-ai hadoop airflow superset ts-mono leaflet)
 
 usage() {
   echo "usage: sweep-log-summary.sh <reason> <project> --maintain M --action A --lesson L" >&2
@@ -39,6 +39,8 @@ project_repo() {
     hadoop) echo apache/hadoop ;;
     airflow) echo apache/airflow ;;
     superset) echo apache/superset ;;
+    ts-mono) echo meridianlabs-ai/ts-mono ;;
+    leaflet) echo Leaflet/Leaflet ;;
     *) return 1 ;;
   esac
 }

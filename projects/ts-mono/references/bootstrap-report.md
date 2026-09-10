@@ -1,6 +1,6 @@
 # ts-mono bootstrap report
 
-Snapshot: 2026-09-04 at `main` commit `f40235c9`
+Snapshot: 2026-09-09 at `main` commit `ddd4db7e`
 Canonical repository: https://github.com/meridianlabs-ai/ts-mono
 
 Observed facts below come from the canonical checkout. Live GitHub state is
@@ -61,7 +61,7 @@ listed separately where authentication is still required.
 
 ## Technology, commands, and CI
 
-- Node `>=22.13.0`, pnpm `11.22.0`, Turbo `^2.10.11`, TypeScript 6 preview,
+- Node `>=22.13.0`, pnpm `11.22.0`, Turbo `^2.10.12`, TypeScript 6 preview,
   React 19, Vite 8, Vitest 4, Playwright 1.62, and ESLint 10 are declared by
   current manifests.
 - Root commands include `pnpm dev`, `pnpm build`, `pnpm test`, `pnpm e2e`,
@@ -89,6 +89,12 @@ listed separately where authentication is still required.
   [#609](https://github.com/meridianlabs-ai/ts-mono/pull/609), and CI policy
   changes [#607](https://github.com/meridianlabs-ai/ts-mono/pull/607) and
   [#611](https://github.com/meridianlabs-ai/ts-mono/pull/611).
+- The 2026-09-09 refresh found no contribution-policy or CI-contract drift.
+  Recent accepted work continued to put log-authored input defenses at shared
+  boundaries: prototype-key filtering
+  [#621](https://github.com/meridianlabs-ai/ts-mono/pull/621) and rendered HTML
+  and link sanitization
+  [#622](https://github.com/meridianlabs-ai/ts-mono/pull/622).
 - Recent authored contributions
   [#512](https://github.com/meridianlabs-ai/ts-mono/pull/512),
   [#541](https://github.com/meridianlabs-ai/ts-mono/pull/541),

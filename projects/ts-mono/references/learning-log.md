@@ -1,5 +1,19 @@
 # ts-mono learning log
 
+## 2026-09-09: defend log-authored input at shared boundaries
+
+Sources: https://github.com/meridianlabs-ai/ts-mono/pull/621 and
+https://github.com/meridianlabs-ai/ts-mono/pull/622
+Classification: accepted peer outcomes
+Observation: Two recent security fixes were accepted by filtering dangerous
+prototype keys at the normalization boundary and hardening the shared rendered
+HTML and link sanitizer, with focused boundary regressions.
+Adopted rule: When log-authored data can reach several consumers, enforce the
+security invariant at the earliest shared normalization or consumption seam
+and exercise alternate representations in tests rather than patching one UI.
+Next action: Apply this rule to future log, journal, URL, and rendered-content
+work, while preserving transport-specific behavior at the boundary.
+
 ## 2026-09-04: refresh the owning seam before reviving stale work
 
 Source: https://github.com/meridianlabs-ai/ts-mono/pull/373#issuecomment-5516404723

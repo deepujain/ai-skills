@@ -79,6 +79,13 @@ steps and record the specific PR claim, comment, push, or check query that
 needs authority. Do not turn an unavailable mutation into an invented "no data"
 sweep result.
 
+When an authenticated HTTPS push succeeds but `gh` is absent, retrieve the
+existing credential through the configured Git credential helper and use it only
+for the exact GitHub REST mutation needed to finish the user-authorized work,
+such as opening the PR. Never print, persist, or ask the user to copy that
+credential. Do not hand the user a manual PR-creation URL while this path is
+available; a pushed branch does not fill a queue slot until the PR exists.
+
 ## Inputs, Outputs, and Preconditions
 
 | Type | Content |

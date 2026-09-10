@@ -214,6 +214,11 @@ live-issue task; do not stop at the first unavailable client.
 2. If that integration returns `403 Resource not accessible by integration`,
    treat it as an operation-specific permission denial. Check `gh auth status`
    in the same shell and use authenticated `gh` for the denied read or mutation.
+   When `gh` is unavailable but an authenticated HTTPS `git push` to the user's
+   fork succeeds, reuse the configured Git credential helper for the exact
+   GitHub REST mutation (for example, creating the PR) without exposing its
+   secret or asking the user to open a manual URL. A successful push is
+   evidence of a usable credential path, not a reason to stop at a branch.
 3. If `gh` is unavailable or unauthenticated and the user has authorized GitHub
    device login, start the CLI device-login flow yourself with
    `gh auth login -h github.com --web`; retain the device code/URL, wait for
@@ -229,6 +234,13 @@ live-issue task; do not stop at the first unavailable client.
    safe local work and public read-only reconnaissance, record the exact denied
    operation and fallback result, and do not claim the whole repository is
    inaccessible.
+
+For user-authorized Skippy contribution work, complete normal delivery steps
+yourself: fork branch push, PR creation, CI/review follow-up, and repair. Do
+not return a manual browser link, shell command, or handoff merely because one
+client is unavailable while another authenticated path can perform the action.
+Ask the user only when a real authority boundary, maintainer decision, or
+security/design choice prevents a safe autonomous next step.
 
 The presence or absence of one client is not evidence about another client's
 authorization. GitHub API access is also distinct from Git push transport: use

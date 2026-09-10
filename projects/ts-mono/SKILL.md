@@ -18,7 +18,7 @@ sweep and replenish run.
 
 ## Bootstrap status
 
-Analyzed from repository sources at `main` commit `f40235c9` on 2026-09-04.
+Analyzed from repository sources at `main` commit `ddd4db7e` on 2026-09-09.
 Refresh live contribution policy, PR overlap, required checks, and fork state
 before every sweep. See the bootstrap report for sources, inferences, and
 remaining live-GitHub unknowns.

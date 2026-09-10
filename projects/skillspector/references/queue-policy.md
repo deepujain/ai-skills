@@ -11,6 +11,57 @@ whenever `CONTRIBUTING.md` or GitHub policy changes
 Read the shared references/contribution-queues.md policy before configuring
 or acting on a target.
 
+## 2026-09-08 sweep state
+
+- **Queue:** target met at 5/5 authored open PRs: #428, #434, #436, #469, and
+  #499.
+- **Maintain:** all five are clean and mergeable against current `main`.
+  Every required CI job is terminal and passing; Docker smoke is expectedly
+  skipped on the two docs-only PRs and passes on the code PRs. #499 has no
+  review feedback. #434 and #436 still await maintainer re-review of their
+  stale, already-addressed review requests; no contributor action remains.
+- **Learn:** #499 confirms the current delivery rule: a working fork credential
+  can authenticate the exact GitHub API mutation needed to open the PR even
+  when `gh` is unavailable. This rule is now recorded in the Skippy skill and
+  shared contribution protocol.
+- **Replenish:** not needed while the configured five-PR target is full.
+
+## 2026-09-07 release rebase sweep
+
+- **Maintain:** upstream `main` advanced through release 2.11.1 to `704bc95`.
+  #428, #434, #436, and #469 were two commits behind, each rebased cleanly in
+  the isolated checkout, and force-pushed with a lease to `eb44ae6`,
+  `1150743`, `7d1f6a3`, and `f568fed`, respectively. The graph branch passed
+  syntax compilation, diff checking, and retained DCO trailers. GitHub CI was
+  restarted by the branch updates.
+- **Replenish:** recently opened #494 already has #496. #495 is an unclaimed
+  install-gate bypass: recursive discovery silently skips symlinked skills but
+  reports complete coverage. It is a high-risk scanner-contract change; the
+  safe minimum is to make skipped links produce an incomplete result and add a
+  regression, without following the link. Treat it as a dedicated security
+  repair, not an unvalidated queue filler.
+
+## 2026-09-07 sweep state
+
+- **Queue:** four authored PRs are open: #428, #434, #436, and #469. #468
+  remains merged, leaving the configured five-PR target one short.
+- **Maintain:** each open PR is mergeable and clean against `main`; all five
+  CI checks are terminal and passing, except expected Docker skips on the two
+  docs-only PRs. DCO passes on all four heads. No rebase, code repair, or push
+  was needed after the 2026-09-06 maintenance run.
+- **Review:** #428 is approved on its current head. #469 has no review
+  findings. #434 and #436 retain only stale `CHANGES_REQUESTED` reviews: their
+  sole inline findings have an author response and are already fixed on the
+  current heads. They await maintainer re-review; there is no contributor
+  action to take now.
+- **Learn:** #468 merged, confirming the DCO-preserving rebase and CI approach
+  used in the previous sweep. No new durable project rule was found.
+- **Replenish:** #485 has active #486 and #490; #487 has #488 and #489; #482
+  has #483; #481 has #480 and #484; #472 has #474; and #464 has #465.
+  Unclaimed #479, #478, #477, and #475 are security-sensitive bypass reports
+  requiring an ownership and threat-model decision before public changes. No
+  qualified, non-overlapping contribution was available for the remaining slot.
+
 ## 2026-09-06 authenticated transport sweep
 
 - **Queue:** API evidence identified four currently open authored PRs: #428,

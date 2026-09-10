@@ -1,9 +1,5 @@
 # Skippy
 
-<p align="center">
-  <img src="images/skippy.png" alt="Skippy project mascot" width="280">
-</p>
-
 Skippy is an AI graph engineering system for accountable software delivery.
 Its canonical workflow is an executable 23-node, 53-edge DAG that controls
 routing, evidence fan-out, typed joins and handoffs, bounded retries, repair,

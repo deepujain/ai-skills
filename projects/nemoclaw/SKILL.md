@@ -647,6 +647,12 @@ Use PR comments to tell reviewers what changed and what relevant validation pass
   false TS2883 declaration-portability failures. After a dependency-changing
   rebase, move the suspect tree aside, run `npm ci --ignore-scripts`, and invoke
   installed gates with `npx` before diagnosing source code.
+- **Run native Oxfmt after every rebase and before exact-head validation.** Since
+  merged #11403, formatting applies to every maintained JavaScript and
+  TypeScript file, including edits to existing files; it no longer depends on
+  Git history or the retired added-file wrapper. Let the pre-commit Oxfmt hook
+  repair the branch, commit any formatter-only delta, then rerun focused and
+  broad gates on the resulting head before pushing or posting a receipt.
 - **Security scans apply to test fixtures too.** Avoid `existsSync(path)` followed later by a read or write of the same fixture path. Assert absence from one directory listing and assert presence with a direct read so CodeQL does not find a check-then-use filesystem race and the test still proves observable state. Likewise, do not open the same path twice merely to model duplicate-file identity; `O_NOFOLLOW` does not remove CodeQL's path-race finding. Open distinct private fixtures once, obtain one descriptor's `fstat` result, and mock the identity lookup for the second descriptor when the test needs both handles to represent the same underlying object.
 - **Merged PRs use subsystem-specific evidence.** Match the proof to the risk: argv-contract tests for shelling out, response-body tests for health probes, state-handoff tests for onboard/provider flows, exact mode/owner assertions for security, and docs generation checks for docs/skills.
 - **Use `Refs` when the issue remains partially open.** Do not over-close broad issues with `Fixes` if the PR covers only one symptom. Reviewers have accepted PRs that clearly stated the remaining out-of-scope behavior.

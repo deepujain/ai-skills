@@ -17,6 +17,8 @@ Also apply the shared OSS contribution quality protocol in
 [../../../references/contribution-quality.md](../../../references/contribution-quality.md).
 Project-specific instructions below override the shared protocol when they
 conflict.
+Every Superset `sweep` includes Maintain, Learn, and Replenish and must use the
+shared [sweep output contract](../../../references/sweep-output-contract.md).
 
 **Issues and PRs both live on GitHub.** Before making any code changes: sync
 with upstream, create the branch (or use the existing PR branch); then implement.

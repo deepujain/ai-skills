@@ -183,13 +183,10 @@ table whenever anything merged or closed since the previous sweep.
 
 During an open-PR sweep, do not stop at CI triage. Also identify **review-stalled** PRs: branches that are green and mergeable but still waiting on human review. Those need a polite maintainer nudge, not more code churn.
 
-Use this table format for Hadoop open-PR sweeps unless the user explicitly asks for a different format:
-
-| PR | Requested Action Found | CI / Failures | Review Comments | Stale / Merge State | Greptile | Action Taken | Final State |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| #NNNN title | stale ping / CI failure / bot comment / conflict / none | green or failing check names | `hadoop-yetus` / Yetus bot: addressed / not addressed / n/a; `github-actions[bot]` / CI bot: addressed / not addressed / n/a; `greptile-apps[bot]` / CodeRabbit / AI review bot if present: addressed / not addressed / n/a; `human: <name>`: addressed / not addressed / blocked / n/a | clean / mergeable / conflicting / stale ping timestamp | N/5 or n/a | pushed fix / posted status / added rocket / no action needed | green / rerunning / blocked |
-
-For the `Review Comments` column, always categorize by reviewer identity rather than giving only a total count. Include each bot type separately when present, and include human reviewers by GitHub login or display name. Use short statuses such as `addressed`, `already addressed`, `stale`, `informational`, `not addressed`, or `blocked: needs maintainer decision`.
+Every Hadoop sweep uses the shared
+[sweep output contract](../../../references/sweep-output-contract.md). Identify
+Yetus, GitHub Actions, Greptile, CodeRabbit, other AI review bots, and human
+reviewers separately in `Review Comments`.
 
 ### Sweep replenishment after merge
 

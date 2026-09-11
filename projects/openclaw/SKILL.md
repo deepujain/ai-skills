@@ -251,13 +251,10 @@ For that sweep:
    - action actually taken, such as code fix pushed, rebase pushed, PR comment posted, reaction added, rerun requested, or no action needed
    - final state, such as green, rerunning, mergeable, waiting on maintainer, or blocked
 
-Use this table format for OpenClaw open-MR URL sweeps unless the user explicitly asks for a different format:
-
-| PR | Requested Action Found | CI / Failures | Review Comments | Stale / Merge State | Greptile | Action Taken | Final State |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| #NNNN title | stale ping / CI failure / bot comment / conflict / none | green or failing check names | `greptile-apps[bot]`: addressed / not addressed / n/a; AI review connector: addressed / not addressed / n/a; `CodeRabbit/Aisle/security bot`: addressed / not addressed / n/a; `human: <name>`: addressed / not addressed / blocked / n/a | clean / mergeable / conflicting / stale ping timestamp | N/5 or n/a | pushed fix / posted status / added rocket / no action needed | green / rerunning / blocked |
-
-For the `Review Comments` column, always categorize by reviewer identity rather than giving only a total count. Include each bot type separately when present, especially `greptile-apps[bot]`, AI review connectors, CodeRabbit, Aisle, security-review bots, and similar reviewers. Include human reviewers by GitHub login or display name. Use short statuses such as `addressed`, `already addressed`, `stale`, `informational`, `not addressed`, or `blocked: needs maintainer decision`. If there are no comments from a category, say `n/a` for that category or omit the category when the column remains readable.
+Every OpenClaw sweep uses the shared
+[sweep output contract](../../references/sweep-output-contract.md). Identify
+Greptile, AI review connectors, CodeRabbit, Aisle, security-review bots, and
+human reviewers separately in `Review Comments`.
 
 Do not collapse multiple PRs into a prose summary. The table is the audit trail the user relies on to see that every open MR was checked.
 

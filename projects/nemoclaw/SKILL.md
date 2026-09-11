@@ -429,15 +429,12 @@ is triggered by the user or by a scheduled task.
   only when the final receipt names the refresh time, current base SHA, exact
   open set, and per-branch `behind_by` result.
 
-Use this table format for NemoClaw open-PR sweeps unless the user explicitly asks for a different format:
-
-| PR | Requested Action Found | CI / Failures | Review Comments | Stale / Merge State | Greptile | Action Taken | Final State |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| #NNNN title | stale ping / CI failure / bot comment / conflict / none | green or failing check names | `coderabbitai[bot]`: addressed / not addressed / n/a; `greptile-apps[bot]`: addressed / not addressed / n/a; AI review connector: addressed / not addressed / n/a; `copy-pr-bot` / NVIDIA runner bot: informational / blocked / n/a; `human: <name>`: addressed / not addressed / blocked / n/a | clean / mergeable / conflicting / stale ping timestamp | N/5 or n/a | concrete action already taken: rebased, fixed comment, pushed branch, updated PR body, posted comment, added reaction, or no action needed | green / rerunning / blocked |
-
-The `Action Taken` column must describe completed work, not intentions. Examples: `rebased + pushed + posted status`, `fixed CodeRabbit nit + added rocket`, `PR body sign-off added`, `no code change; CodeRabbit pending`. If no action was possible, say why.
-
-For the `Review Comments` column, always categorize by reviewer identity rather than giving only a total count. Include each bot type separately when present, especially CodeRabbit, Greptile, AI review connectors, copy-pr-bot / runner-approval bots, and security bots. Include human reviewers by GitHub login or display name. Use short statuses such as `addressed`, `already addressed`, `stale`, `informational`, `not addressed`, or `blocked: needs maintainer decision`.
+Every NemoClaw sweep, including plain `sweep`, uses the shared
+[sweep output contract](../../references/sweep-output-contract.md). Do not
+rename its columns or substitute a NemoClaw-specific table. In `Review
+Comments`, identify CodeRabbit, Greptile, AI review connectors, copy-pr-bot,
+runner-approval bots, security bots, and human reviewers separately when they
+are present.
 
 ### 8.1 Investigate
 

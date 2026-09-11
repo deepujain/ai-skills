@@ -15,6 +15,8 @@ Use [the project learning log](references/learning-log.md) with the shared
 outcomes or periodic project scans.
 Use [the queue policy](references/queue-policy.md) before a scheduled or manual
 sweep and replenish run.
+Every SkillSpector `sweep` includes Maintain, Learn, and Replenish and must use
+the shared [sweep output contract](../../references/sweep-output-contract.md).
 
 ## Bootstrap status
 

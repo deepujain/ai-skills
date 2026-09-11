@@ -77,6 +77,15 @@ the configured target is reached, or record the specific policy, authority,
 environment, overlap, or validation blocker that makes safe replenishment
 impossible.
 
+**Sweep always includes replenishment.** In an active project context,
+`skippy sweep`, plain `sweep`, `skippy sweep and replenish`, and the common
+misspelling `skippy sweep and replinish` all mean the complete ordered
+`Maintain → Learn → Replenish` lifecycle. Replenishment is a verified no-op when
+the healthy queue already meets its target. Omit it only when the user
+explicitly requests maintenance-only work. Read and obey the canonical
+[sweep output contract](../references/sweep-output-contract.md) before starting
+the run so evidence is collected for its exact final schema.
+
 **Rebase conflicts are maintain work.** When a PR is `mergeable=CONFLICTING`,
 GitHub shows a conflict banner, or `sweep-maintain-pr.sh` logs `REBASE CONFLICT`,
 checkout the branch, rebase onto upstream default, resolve hunks, validate,
@@ -172,13 +181,12 @@ Do not report success until all of these are true:
 - The diff was reviewed for behavior, security, compatibility, and cleanup.
 - Delivery state is known: commit, PR, signature, CI, review, and external
   blockers are reported exactly.
-- A completed sweep has one final summary table produced after Maintain, Learn,
-  and Replenish. Its Maintain cell reports branch-update results without log
-  pointers; Action gives one or two concrete lines covering code, CI, review,
-  rebase, and replenishment work actually done; Self Learning gives one or two
-  lines with the durable lesson and exact skill/log update, or an evidence-based
-  `No skill update:` reason. Placeholder text such as `see tick`, `see SWEEP
-  line`, and `see queue-policy` is prohibited.
+- A completed contribution-queue sweep follows the canonical
+  [sweep output contract](../references/sweep-output-contract.md). Draft the
+  final Markdown report, run `python3 scripts/verify_sweep_output.py <file>`,
+  and return the validated report without renaming columns or omitting the
+  Maintain, Learn, or Replenish rows. The fixed-width operational log summary
+  does not replace the user-facing PR table.
 - All outbound GitHub prose contains no em dash character (`U+2014`). This includes
   issue and PR titles and bodies, descriptions, comments, reviews, inline
   threads, replies, commit messages, and release text. Check the final text
@@ -194,7 +202,10 @@ explicitly requested cadence instead.
 - `skippy mode <outcome>`
 - `run this with skippy`
 - `continue skippy`
+- `skippy sweep`
+- `sweep` (when the active thread identifies a configured project)
 - `skippy sweep and replenish`
+- `skippy sweep and replinish`
 - `skippy bootstrap <repository URL>`
 - `bootstrap <project slug> <repository URL>`
 - `skippy learn <project>`

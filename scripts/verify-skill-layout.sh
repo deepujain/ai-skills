@@ -11,19 +11,41 @@ while IFS= read -r skill; do
   fi
 done < <(find "$root/projects" "$root/skippy" -name SKILL.md -type f | sort)
 
-for reference in contribution-quality.md continuous-learning.md contribution-queues.md execution-contracts.md verification-receipts.md engineering-principles.md engineering-foundations.md graph-engineering.md project-bootstrap.md delegation.md oss-contribution-system.md; do
+for reference in contribution-quality.md continuous-learning.md contribution-queues.md execution-contracts.md verification-receipts.md engineering-principles.md engineering-foundations.md graph-engineering.md project-bootstrap.md delegation.md oss-contribution-system.md sweep-output-contract.md; do
   if [[ ! -f "$root/references/$reference" ]]; then
     echo "missing shared reference: $reference" >&2
     errors=1
   fi
 done
 
-for file in playbooks/index.md playbooks/bootstrap-project.md playbooks/continuous-learning.md playbooks/contribution-queue.md skippy/agents/investigator.md skippy/agents/verifier.md scripts/bootstrap-project.sh scripts/configure-project-queue.sh scripts/record-project-learning.sh scripts/skippy-graph.py workflows/skippy-delivery.json automations/continuation/sweep-and-replenish-prompt.md; do
+for file in playbooks/index.md playbooks/bootstrap-project.md playbooks/continuous-learning.md playbooks/contribution-queue.md skippy/agents/investigator.md skippy/agents/verifier.md scripts/bootstrap-project.sh scripts/configure-project-queue.sh scripts/record-project-learning.sh scripts/skippy-graph.py scripts/verify_sweep_output.py workflows/skippy-delivery.json automations/continuation/sweep-and-replenish-prompt.md; do
   if [[ ! -f "$root/$file" ]]; then
     echo "missing orchestration artifact: $file" >&2
     errors=1
   fi
 done
+
+while IFS= read -r skill; do
+  if rg -qi 'sweep|replenish' "$skill" && ! rg -Fq 'sweep-output-contract.md' "$skill"; then
+    echo "missing canonical sweep output contract: ${skill#$root/}" >&2
+    errors=1
+  fi
+done < <(find "$root/projects" -name SKILL.md -type f | sort)
+
+if rg -l 'Use this table format for .*sweep' "$root/projects" -g SKILL.md >/dev/null; then
+  echo "project skill redefines the canonical sweep table" >&2
+  errors=1
+fi
+
+sweep_prompt="$("$root/scripts/sweep-tick-prompt.sh" superset verification)"
+if ! rg -Fq 'verify_sweep_output.py' <<<"$sweep_prompt"; then
+  echo "generated sweep prompt omits final-output validation" >&2
+  errors=1
+fi
+if ! rg -Fq 'Maintain → Learn → Replenish' <<<"$sweep_prompt"; then
+  echo "generated sweep prompt does not make replenishment default" >&2
+  errors=1
+fi
 
 if ! python3 -B "$root/scripts/skippy-graph.py" validate \
   "$root/workflows/skippy-delivery.json" >/dev/null; then

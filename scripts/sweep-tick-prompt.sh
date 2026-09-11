@@ -58,10 +58,11 @@ This is ONE end-to-end pass. NOT a status-only report. NOT a rebase-only pass.
 1. ${ROOT}/skippy/SKILL.md — router, non-negotiable loop, completion gate
 2. ${ROOT}/playbooks/contribution-queue.md — all steps: maintain, learn, replenish
 3. ${ROOT}/references/contribution-quality.md
-4. ${PROJECT_SKILL} — full project PR recipe and sweep table format
-5. ${CONT}
-6. ${QUEUE_POLICY}$([ -n "$LEARNING" ] && [ -f "$LEARNING" ] && echo "
-7. ${LEARNING}")
+4. ${ROOT}/references/sweep-output-contract.md — exact final response schema
+5. ${PROJECT_SKILL} — full project PR recipe
+6. ${CONT}
+7. ${QUEUE_POLICY}$([ -n "$LEARNING" ] && [ -f "$LEARNING" ] && echo "
+8. ${LEARNING}")
 
 ## Required work this tick (Maintain → Learn → Replenish)
 
@@ -78,7 +79,7 @@ This is ONE end-to-end pass. NOT a status-only report. NOT a rebase-only pass.
   never stop the tick at the failure line
 - Recover push-stale: refetch fork OID → retry \`--force-with-lease\` →
   \`gh pr update-branch --rebase\` → confirm \`behind_by=0\`
-- Produce the project skill sweep action table (one row per PR with Action Taken)
+- Collect every field required by the canonical eight-column PR table
 
 ### 2. Learn
 - Run the bounded continuous-learning scan (${ROOT}/playbooks/continuous-learning.md)
@@ -106,6 +107,19 @@ For multi-project batch sweeps, use \`--all --tsv-file\` or repeated \`--row\`
 (see \`scripts/sweep-log-summary.sh\` header).
 
 Append a one-line outcome via: ${ROOT}/scripts/sweep-log.sh ${PROJECT} "SWEEP (${REASON}) <outcome>"
+
+Before replying to the user, draft the final Markdown report in a temporary
+file using ${ROOT}/references/sweep-output-contract.md, then run:
+
+
+\`\`\`bash
+python3 ${ROOT}/scripts/verify_sweep_output.py <report-file>
+\`\`\`
+
+Return the validated content without changing the title, queue and observation
+lines, exact eight PR-table columns, Maintain/Learn/Replenish table, validation
+section, or external-blockers section. The operational log summary above does
+not replace the user-facing report.
 
 Non-interactive: no approval prompts. Use the GitHub access ladder. Execute all three
 steps fully until target is met, verified maximum is reached, or each unfilled slot

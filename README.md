@@ -226,19 +226,25 @@ skippy bootstrap https://github.com/meridianlabs-ai/ts-mono
 For an already-supported project, skip this step. See the
 [bootstrap playbook](playbooks/bootstrap-project.md) for the detailed output.
 
-### 2. Sweep and replenish
+### 2. Sweep (with replenishment by default)
 
-When you want to maintain in-flight changes and fill open slots, use this packaging of
-the contribution-queue playbook:
+Run a complete contribution-queue pass with:
 
 ```text
-skippy sweep and replenish
+skippy sweep
 ```
 
-Skippy maintains existing pull requests or merge requests, runs a bounded
-learning scan, and picks screened, non-overlapping follow-on work when policy
-allows. It uses the configured queue target, or **5** healthy open changes when
-no target is recorded, unless repository policy sets a lower maximum.
+Plain `sweep`, `skippy sweep and replenish`, and the common misspelling
+`skippy sweep and replinish` mean the same thing: Skippy maintains existing
+pull requests or merge requests, runs a bounded learning scan, and replenishes
+every eligible open slot with screened, non-overlapping follow-on work when
+policy allows. Replenishment is a verified no-op only when the queue is already
+at target; omit it only by explicitly requesting a maintenance-only run. Skippy
+uses the configured queue target, or **5** healthy open changes when no target
+is recorded, unless repository policy sets a lower maximum.
+
+Every sweep returns the same validated per-PR and per-phase report described by
+the [sweep output contract](references/sweep-output-contract.md).
 
 For every configured project at once, use:
 

@@ -367,30 +367,13 @@ overfit unexplained closures; report `no skill change needed` when there is no
 reusable lesson. Include a departed-PR table before the open-PR table whenever
 anything merged or closed since the previous sweep.
 
-Use this table format for PyTorch open-PR sweeps unless the user explicitly asks
-for a different format:
-
-| PR | Requested Action Found | CI / Dr. CI / HUD | Review Comments | Labels / Release Notes | Docs Preview / Evidence | Action Taken | Final State |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| #NNNN title | reviewer ask / label bot / merge failure / stale / none | green / pending approval / failing check names / neutral / unknown | `human: <login>`: addressed / not addressed / n/a; `pytorch-bot`: informational / blocked / n/a; inline comments: N | complete / missing / stale bot comment already resolved | rendered screenshot path / 403 / 404 / no artifact / n/a | concrete action already taken: fixed branch, rebased, updated body, prepared screenshot, no action needed, or blocked reason | ready / rerunning / blocked / waiting maintainer approval |
-
-The `Action Taken` column must describe completed work, not intentions. If no
-action was possible, say why. For `Review Comments`, categorize by reviewer or
-bot identity instead of only giving a count. Include PyTorchBot, EasyCLA,
-Dr. CI/HUD, label bots, and human reviewers separately when they matter.
-
-After the table, always include a concise `Lessons Learned` section:
-
-- **New reusable lessons:** bullets only for evidence-backed findings from this
-  sweep, such as a repeated reviewer preference, CI behavior, closure reason,
-  label pattern, docs-preview behavior, duplicate-risk pattern, or issue
-  selection signal.
-- **Skill update:** `updated` with the file/section changed, or `not needed`
-  with the reason. If a new lesson is reusable, add the smallest durable rule at
-  the correct place in this skill during the sweep, validate the markdown, and
-  commit/push the skill repository when repo policy permits. Do not append loose
-  notes at the end when an existing section is the right home.
-- **No new lesson:** say `No new reusable lesson; skill update not needed.`
+Every PyTorch sweep uses the shared
+[sweep output contract](../../references/sweep-output-contract.md). Put Dr. CI
+and HUD results in `CI / Failures`; identify PyTorchBot, EasyCLA, label bots,
+and human reviewers in `Review Comments`; and put labels, release notes, and
+docs-preview evidence under `Action Taken`, `Final State`, or `Validation and
+receipts` as appropriate. Record durable lessons in the canonical `Learn`
+phase row rather than adding project-specific columns or sections.
 
 ### Sweep replenishment
 

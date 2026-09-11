@@ -8,6 +8,8 @@ description: Contribute focused, merge-ready pull requests to NVIDIA-AI-Blueprin
 Apply the shared OSS quality protocol in
 [../../references/contribution-quality.md](../../references/contribution-quality.md).
 Project-specific instructions below override it when they conflict.
+Every AIQ `sweep` includes Maintain, Learn, and Replenish and must use the
+shared [sweep output contract](../../references/sweep-output-contract.md).
 
 Use this recipe for [NVIDIA-AI-Blueprints/aiq](https://github.com/NVIDIA-AI-Blueprints/aiq),
 the NVIDIA AI-Q Blueprint built on NeMo Agent Toolkit (NAT). Keep changes

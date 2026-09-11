@@ -67,6 +67,18 @@ Each tick runs **Maintain → Learn → Replenish** (all three mandatory):
 3. **Replenish** — fill each eligible missing slot through the full contribution
    recipe, or record a source-backed blocker per unfilled slot.
 
+The words `sweep`, `sweep and replenish`, and `sweep and replinish` invoke this
+same complete lifecycle. Replenishment is the default and becomes a verified
+no-op only when the queue is already at target. Skip it only for an explicit
+maintenance-only request.
+
+The final user-facing response must follow
+`references/sweep-output-contract.md`. Draft it to a temporary Markdown file,
+validate it with `python3 scripts/verify_sweep_output.py <report-file>`, and
+return it unchanged. Never substitute the operational sweep-log summary,
+free-form prose, PR bullets, or an artifact list for the required eight-column
+PR table and Maintain/Learn/Replenish table.
+
 For a single-project tick, append its summary table to
 `.skippy/sweep-output.log`:
 

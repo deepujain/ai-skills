@@ -249,14 +249,12 @@ sentence instead. Check the final rendered text immediately before publishing.
 
 ## Open PR Sweep Report
 
-When sweeping open PRs, report every PR so skipped work is visible:
-
-| PR | Requested Action Found | CI / Failures | Reviews / Bots | Stale or Conflict State | Action Taken | Final State |
-| --- | --- | --- | --- | --- | --- | --- |
-| #NNN title | CI failure / review / stale ping / none | green, failing job, or rerunning | addressed / stale / blocked / n/a | clean / stale / conflict | pushed fix / posted status / no action | ready / rerunning / blocked |
-
-Categorize review comments by reviewer identity when practical. Separate human
-review, project bots, and AI review bots because the right response differs.
+Every contribution-queue sweep must use the single canonical
+[sweep output contract](sweep-output-contract.md). It requires one row per open
+PR, exact review attribution, a dedicated Greptile column, current stale and
+merge state, all three sweep phases, receipts, and external blockers. Do not
+invent project-specific headings or replace the report with prose, a PR-link
+list, an artifact list, or the operational sweep-log summary.
 
 ## Cross-Project Contribution Matrix Handoff
 

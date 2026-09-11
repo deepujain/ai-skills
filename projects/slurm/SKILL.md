@@ -16,6 +16,10 @@ Also apply the shared OSS contribution quality protocol in
 [../../references/contribution-quality.md](../../references/contribution-quality.md).
 Project-specific instructions below override the shared protocol when they
 conflict.
+Every Slurm `sweep` includes Maintain, Learn, and Replenish and must use the
+shared [sweep output contract](../../references/sweep-output-contract.md). Put
+the SchedMD ticket and patch identity in the `PR` column because Slurm does not
+use GitHub pull requests.
 
 Slurm is **not** an Apache project. **There are no GitHub pull requests.** Contributions are submitted as **patches attached to tickets** on the SchedMD issue tracker. Use this skill when contributing code to Slurm.
 

@@ -13,6 +13,8 @@ Read [the shared contribution protocol](../../references/contribution-quality.md
 [the queue policy](references/queue-policy.md) before selecting or changing an
 issue. Add durable outcome evidence to
 [the learning log](references/learning-log.md).
+Every Leaflet `sweep` includes Maintain, Learn, and Replenish and must use the
+shared [sweep output contract](../../references/sweep-output-contract.md).
 
 ## Contribution contract
 

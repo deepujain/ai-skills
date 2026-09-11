@@ -1,8 +1,13 @@
 # Contribution Queue Playbook
 
 Use this playbook when a project has a configured healthy-open-contribution
-target or the user requests `sweep and replenish`. If no target is configured,
-use 5 unless current project policy sets a lower maximum.
+target or the user requests `sweep`, `sweep and replenish`, or `sweep and
+replinish`. These invocations are equivalent: every sweep includes Maintain,
+Learn, and Replenish unless the user explicitly requests maintenance only. If
+no target is configured, use 5 unless current project policy sets a lower
+maximum. Read the canonical
+[sweep output contract](../references/sweep-output-contract.md) before work
+begins.
 
 ## Every tick (all three steps — mandatory)
 
@@ -52,10 +57,11 @@ lifecycle:
    complete issue, linked-development, overlap, policy, and evidence screening;
    finish qualified contributions end to end or record a source-backed blocker
    for every unfilled slot.
-6. Return one structured project receipt containing open/target,
-   healthy/target, Maintain results, concrete Action results, a two-line Self
-   Learning result, departed PRs, exact remaining blockers, validation, remote
-   delivery state, and local files changed.
+6. Draft and validate the user-facing report required by the
+   [sweep output contract](../references/sweep-output-contract.md). Return that
+   exact eight-column PR table, the Maintain/Learn/Replenish phase table,
+   receipts, and external blockers. Do not substitute prose, a PR-link list, or
+   the fixed-width operational log summary.
 
 The main agent is the coordinator and integrator. It must not run a serial
 all-project Maintain pass before delegation, because that splits ownership,
@@ -158,10 +164,13 @@ same tick (other PRs, Learn, Replenish).
 Fix it (or record a maintainer-design blocker on that PR only), verify, then
 proceed to the next PR and to Learn → Replenish.
 
-**Sweep log summary table:** At the end of a single-project tick, append its
-summary directly. During a multi-project sweep, each project subagent returns
-its row to the main agent without writing the global table; the main agent
-appends one combined table only after reviewing every receipt. Use
+**Operational sweep log summary:** At the end of a single-project tick, append
+its summary directly. This log artifact is separate from and cannot replace the
+user-facing report in the
+[sweep output contract](../references/sweep-output-contract.md). During a
+multi-project sweep, each project subagent returns its row to the main agent
+without writing the global table; the main agent appends one combined table
+only after reviewing every receipt. Use
 `scripts/sweep-log-summary.sh` (fixed-width box table in the log) with columns:
 Project, Open, Healthy, Maintain, Action, Self Learning.
 

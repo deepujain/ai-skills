@@ -88,6 +88,15 @@ explicitly requests maintenance-only work. Read and obey the canonical
 [sweep output contract](../references/sweep-output-contract.md) before starting
 the run so evidence is collected for its exact final schema.
 
+**Sweep always includes replenishment.** In an active project context,
+`skippy sweep`, plain `sweep`, `skippy sweep and replenish`, and the common
+misspelling `skippy sweep and replinish` all mean the complete ordered
+`Maintain → Learn → Replenish` lifecycle. Replenishment is a verified no-op when
+the healthy queue already meets its target. Omit it only when the user
+explicitly requests maintenance-only work. Read and obey the canonical
+[sweep output contract](../references/sweep-output-contract.md) before starting
+the run so evidence is collected for its exact final schema.
+
 **Rebase conflicts are maintain work.** When a PR is `mergeable=CONFLICTING`,
 GitHub shows a conflict banner, or `sweep-maintain-pr.sh` logs `REBASE CONFLICT`,
 checkout the branch, rebase onto upstream default, resolve hunks, validate,

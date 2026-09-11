@@ -51,6 +51,17 @@ execution was graph-enforced.
 
 ## Routing
 
+Resolve the project before selecting a repository checkout. Use this precedence:
+
+1. A repository URL or project name in the current user message.
+2. The most recent explicitly identified configured project in the task.
+3. The working directory only when it maps unambiguously to a configured
+   `projects/<project>/SKILL.md` adapter.
+
+Never let the Skippy skill repository checkout override an explicit or recent
+target project. If no configured project can be resolved, stop and request the
+project instead of running a sweep against Skippy itself.
+
 | Request shape | First playbook | Supporting capability |
 | --- | --- | --- |
 | Understand or diagnose without editing | Investigation | Current-system and history evidence |
@@ -78,15 +89,6 @@ repository in any rolling 24-hour window by default. Starting a new sweep does
 not reset the window. Record later qualified candidates as paced continuation,
 or record the specific policy, authority, environment, overlap, or validation
 blocker that makes safe replenishment impossible.
-
-**Sweep always includes replenishment.** In an active project context,
-`skippy sweep`, plain `sweep`, `skippy sweep and replenish`, and the common
-misspelling `skippy sweep and replinish` all mean the complete ordered
-`Maintain → Learn → Replenish` lifecycle. Replenishment is a verified no-op when
-the healthy queue already meets its target. Omit it only when the user
-explicitly requests maintenance-only work. Read and obey the canonical
-[sweep output contract](../references/sweep-output-contract.md) before starting
-the run so evidence is collected for its exact final schema.
 
 **Sweep always includes replenishment.** In an active project context,
 `skippy sweep`, plain `sweep`, `skippy sweep and replenish`, and the common

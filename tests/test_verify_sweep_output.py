@@ -50,6 +50,13 @@ class VerifySweepOutputTests(unittest.TestCase):
             MODULE.validate_report(report),
         )
 
+    def test_accepts_unknown_counts_when_live_state_is_unavailable(self) -> None:
+        report = VALID_REPORT.replace(
+            "Queue: 5/5 open; 4/5 healthy.",
+            "Queue: unknown/5 open; unknown/5 healthy.",
+        )
+        self.assertEqual(MODULE.validate_report(report), [])
+
     def test_requires_replenish_result(self) -> None:
         report = VALID_REPORT.replace("| Replenish | Verified no-op at target. |\n", "")
         self.assertIn("missing Replenish phase result", MODULE.validate_report(report))

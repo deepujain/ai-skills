@@ -27,7 +27,11 @@ def validate_report(text: str) -> list[str]:
 
     if not lines or not re.fullmatch(r"# .+ Skippy Sweep", lines[0]):
         errors.append("first line must be '# <Project> Skippy Sweep'")
-    if not any(re.fullmatch(r"Queue: \d+/\d+ open; \d+/\d+ healthy\.", line) for line in lines):
+    count = r"(?:\d+|unknown)"
+    if not any(
+        re.fullmatch(rf"Queue: {count}/\d+ open; {count}/\d+ healthy\.", line)
+        for line in lines
+    ):
         errors.append("missing exact queue summary")
     if not any(line.startswith("Observed: ") and "; base: " in line for line in lines):
         errors.append("missing observed timestamp and base revision")

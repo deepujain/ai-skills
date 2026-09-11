@@ -31,7 +31,7 @@ Use exactly this structure:
 ```markdown
 # <Project> Skippy Sweep
 
-Queue: <open>/<target> open; <healthy>/<target> healthy.
+Queue: <open or unknown>/<target> open; <healthy or unknown>/<target> healthy.
 Observed: <ISO-8601 timestamp>; base: <upstream revision or unavailable with reason>.
 
 | PR | Requested Action Found | CI / Failures | Review Comments | Stale / Merge State | Greptile | Action Taken | Final State |
@@ -57,6 +57,9 @@ Observed: <ISO-8601 timestamp>; base: <upstream revision or unavailable with rea
 
 - Include one row for every authored open PR. Use a single `None` row only when
   there are no open PRs.
+- Use `unknown` for a queue count only when every configured live source was
+  attempted and the exact authority or access failure is named under `External
+  blockers`. Never coerce unavailable data to zero.
 - Keep the eight PR-table headings exact and in order. `Greptile` remains its
   own column even when the result is `None` or `Unavailable`.
 - In `Review Comments`, identify each human or bot reviewer and state whether

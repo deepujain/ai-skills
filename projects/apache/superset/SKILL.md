@@ -17,6 +17,8 @@ Also apply the shared OSS contribution quality protocol in
 [../../../references/contribution-quality.md](../../../references/contribution-quality.md).
 Project-specific instructions below override the shared protocol when they
 conflict.
+Every Superset `sweep` includes Maintain, Learn, and Replenish and must use the
+shared [sweep output contract](../../../references/sweep-output-contract.md).
 
 **Issues and PRs both live on GitHub.** Before making any code changes: sync
 with upstream, create the branch (or use the existing PR branch); then implement.
@@ -162,7 +164,9 @@ On every sweep (manual or scheduled):
 1. **Maintain** all open authored PRs.
 2. **Learn** — bounded scan of merged/closed peer PRs and bot/review feedback.
 3. **Replenish** — if below queue target (5), screen issues independently and
-   publish qualified, non-overlapping PRs until target or verified blockers.
+   advance qualified, non-overlapping work toward the target, but publish at
+   most one new PR in any rolling 24-hour window by default. A new sweep does
+   not reset the window; record later work as paced continuation.
 
 Replenishment invariants match the shared contribution queue playbook: one
 blocked PR does not stop other slots; record a source-backed disqualifier for

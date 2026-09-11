@@ -64,8 +64,24 @@ Each tick runs **Maintain → Learn → Replenish** (all three mandatory):
 2. **Learn** — bounded scan of review comments, CI failures, bot tools, and
    departed/peer PRs (merged and not merged); update project skill or learning log
    when evidence-backed.
-3. **Replenish** — fill each eligible missing slot through the full contribution
-   recipe, or record a source-backed blocker per unfilled slot.
+3. **Replenish** — advance each eligible missing slot through the full
+   contribution recipe, but publish at most one new PR for this repository in
+   any rolling 24-hour window by default. A new tick does not reset the window.
+   Immediately before publication, query live authored PR creation timestamps
+   across open, merged, and closed states. Record later qualified work as paced
+   continuation and a source-backed blocker for unavailable slots.
+
+The words `sweep`, `sweep and replenish`, and `sweep and replinish` invoke this
+same complete lifecycle. Replenishment is the default and becomes a verified
+no-op only when the queue is already at target. Skip it only for an explicit
+maintenance-only request.
+
+The final user-facing response must follow
+`references/sweep-output-contract.md`. Draft it to a temporary Markdown file,
+validate it with `python3 scripts/verify_sweep_output.py <report-file>`, and
+return it unchanged. Never substitute the operational sweep-log summary,
+free-form prose, PR bullets, or an artifact list for the required eight-column
+PR table and Maintain/Learn/Replenish table.
 
 For a single-project tick, append its summary table to
 `.skippy/sweep-output.log`:
@@ -86,7 +102,11 @@ lesson and exact skill/log update, or `No skill update:` with an evidence-based
 reason. Never use `see tick`, `see SWEEP line`, `see queue-policy`, or another
 pointer in place of the summary.
 
-Do not create overlapping or unvalidated work simply to reach the target. Continue
-until the target is reached, the verified maximum is reached, or each unfilled slot
-has a source-backed external blocker. Report completed actions, evidence, and the
+Do not create overlapping, unvalidated, or burst-published work simply to reach
+the target. A target count is not batch-publication approval. Publish at most
+one new PR per repository in any rolling 24-hour window unless the user
+explicitly requests a batch and repository evidence supports it. A new tick
+does not reset the window; before the next publication, require both the
+elapsed window and executed CI or maintainer feedback. Report remaining
+qualified work as paced continuation, completed actions, evidence, and the
 exact queue count. Do not stop after Maintain alone or at a status-only report.

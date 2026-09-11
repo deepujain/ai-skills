@@ -409,17 +409,11 @@ anything merged or closed since the previous sweep.
 
 If reviewer intent, product direction, credentials, destructive history, or private infrastructure blocks progress, report the blocker plainly with the next concrete ask.
 
-Use this table format for Hermes open-PR sweeps unless the user explicitly asks
-for a different format:
-
-| PR | Requested Action Found | CI / Failures | Reviews / Bots | Stale or Conflict State | Action Taken | Final State | Lessons Learned |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| #NNN title | CI failure / review / stale ping / none | green, failing job, or rerunning | `human: <login>` / `coderabbitai[bot]` / `greptile-apps[bot]` / security bot: addressed, stale, informational, blocked, or n/a | clean / stale / conflict / upstream-blocked | rebased, fixed, pushed, posted status, no action needed, or blocked with reason | ready / rerunning / blocked | skill updated / already covered / no reusable lesson |
-
-The `Action Taken` column must describe completed work, not intentions. If no
-action was safe, state the exact blocker. The `Lessons Learned` column must be
-specific enough to audit: name the durable rule added, the existing rule that
-already covered the finding, or why the finding was one-off and not added.
+Every Hermes sweep uses the shared
+[sweep output contract](../../references/sweep-output-contract.md). Identify
+human reviewers, CodeRabbit, Greptile, and security bots separately in `Review
+Comments`. Record durable rules in the canonical `Learn` phase row, not an
+extra PR-table column.
 
 ## Self-improvement loop
 

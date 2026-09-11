@@ -8,6 +8,8 @@ description: Bootstrap-derived recipe for contributions to NVIDIA/Megatron-LM. U
 This is a provisional project skill, refreshed from `main` at
 [`1cb3264`](https://github.com/NVIDIA/Megatron-LM/commit/1cb3264479f28b8526db3d335faa9c5ef2183989)
 on 2026-08-31. Apply the shared Skippy contribution protocol as well.
+Every Megatron-LM `sweep` includes Maintain, Learn, and Replenish and must use
+the shared [sweep output contract](../../references/sweep-output-contract.md).
 
 ## Hard gates
 

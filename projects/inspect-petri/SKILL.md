@@ -15,6 +15,8 @@ Also apply the shared OSS contribution quality protocol in
 [../../references/contribution-quality.md](../../references/contribution-quality.md).
 Project-specific instructions below override the shared protocol when they
 conflict.
+Every Inspect Petri `sweep` includes Maintain, Learn, and Replenish and must use
+the shared [sweep output contract](../../references/sweep-output-contract.md).
 
 Use this recipe for [meridianlabs-ai/inspect_petri](https://github.com/meridianlabs-ai/inspect_petri). Keep every PR small, issue-linked, and easy for Meridian Labs maintainers to review.
 

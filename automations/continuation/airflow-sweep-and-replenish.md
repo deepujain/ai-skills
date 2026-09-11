@@ -19,9 +19,12 @@ Maintain **5 healthy open contributions** for contributor `deepujain` on
 rules in the project skill — fix existing PRs before opening new ones.
 
 Reconcile departed PRs, maintain every authored open PR, run the bounded learning
-scan, then fill each eligible missing slot with screened, non-overlapping issues.
-Update `projects/apache/airflow/references/queue-policy.md` when queue state
-changes. Do not create files under workspace-root `.skippy/`.
+scan, then advance eligible missing slots with screened, non-overlapping issues.
+Publish at most one new Airflow PR in any rolling 24-hour window by default; a
+new tick does not reset the window. Record later qualified work as paced
+continuation. Update
+`projects/apache/airflow/references/queue-policy.md` when queue state changes. Do
+not create files under workspace-root `.skippy/`.
 
 **Non-interactive maintenance (required):**
 - Rebase stale PR bases onto `apache/main`; push to `origin` with
@@ -30,8 +33,10 @@ changes. Do not create files under workspace-root `.skippy/`.
 - Include Gen-AI disclosure in PR bodies when applicable.
 - Append summaries via `scripts/sweep-log.sh`.
 
-Continue until the target is met, a verified maximum is reached, or each unfilled
-slot has a source-backed blocker. Report completed actions and exact queue count.
-Do not stop at a status-only report while safe work remains.
+Complete all three phases. A target count is not batch-publication approval.
+Before another PR, require both the elapsed 24-hour window and executed CI or
+maintainer feedback. Report paced continuation, source-backed blockers,
+completed actions, and exact queue count. Do not stop at a status-only report
+while safe local work remains.
 
 Task plan: `.skippy/tasks/airflow-sweep-and-replenish.md`

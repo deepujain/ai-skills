@@ -8,7 +8,7 @@ separate bash rebase step.
 | --- | --- |
 | **Maintain** | All open PRs — rebase, CI, reviews, project skill action table |
 | **Learn** | Comments, CI failures, bot reviews (CodeRabbit, etc.); merged/closed PRs; update skill if needed |
-| **Replenish** | Fill missing slots or record source-backed blocker per slot |
+| **Replenish** | Advance missing slots; publish at most one new PR per repository per rolling 24 hours by default; a new tick does not reset the window; record paced continuation or source-backed blockers |
 
 For a manual `skippy sweep all`, launch one local subagent per project in
 parallel. Each project agent owns all three steps for its repository using the

@@ -1,8 +1,13 @@
 # Contribution Queue Playbook
 
 Use this playbook when a project has a configured healthy-open-contribution
-target or the user requests `sweep and replenish`. If no target is configured,
-use 5 unless current project policy sets a lower maximum.
+target or the user requests `sweep`, `sweep and replenish`, or `sweep and
+replinish`. These invocations are equivalent: every sweep includes Maintain,
+Learn, and Replenish unless the user explicitly requests maintenance only. If
+no target is configured, use 5 unless current project policy sets a lower
+maximum. Read the canonical
+[sweep output contract](../references/sweep-output-contract.md) before work
+begins.
 
 ## Every tick (all three steps — mandatory)
 
@@ -14,7 +19,7 @@ remains incomplete.
 | --- | --- |
 | **Maintain** | All open authored PRs — rebase if stale, **resolve merge conflicts**, fix CI, address actionable review comments (human and bot), push signed commits, produce project-skill sweep action table (one row per PR) |
 | **Learn** | Bounded scan: review threads, CI failure shapes, CodeRabbit/Greptile/pre-commit-ci and other bot feedback; departed and peer PRs (merged and closed-without-merge). Adopt durable lessons → project learning log and/or project skill when evidence-backed |
-| **Replenish** | Fill each missing slot via full issue screen + contribution recipe, or record a **source-backed blocker per unfilled slot** |
+| **Replenish** | Advance missing slots through the full issue screen and contribution recipe. Publish at most one new PR per repository in any rolling 24-hour window by default; record later qualified slots as paced continuation or record a source-backed blocker. |
 
 Then read the project queue policy, current contributor limit, project skill, and
 the latest learning log. Refresh limits from live repository policy before
@@ -50,12 +55,15 @@ lifecycle:
    instruction change.
 5. **Replenish:** evaluate every eligible missing slot independently. Perform
    complete issue, linked-development, overlap, policy, and evidence screening;
-   finish qualified contributions end to end or record a source-backed blocker
-   for every unfilled slot.
-6. Return one structured project receipt containing open/target,
-   healthy/target, Maintain results, concrete Action results, a two-line Self
-   Learning result, departed PRs, exact remaining blockers, validation, remote
-   delivery state, and local files changed.
+   publish at most one qualified contribution for this repository in any rolling
+   24-hour window, retain later qualified work as paced continuation, and record
+   a source-backed blocker for unavailable slots. A new sweep does not reset the
+   publication window.
+6. Draft and validate the user-facing report required by the
+   [sweep output contract](../references/sweep-output-contract.md). Return that
+   exact eight-column PR table, the Maintain/Learn/Replenish phase table,
+   receipts, and external blockers. Do not substitute prose, a PR-link list, or
+   the fixed-width operational log summary.
 
 The main agent is the coordinator and integrator. It must not run a serial
 all-project Maintain pass before delegation, because that splits ownership,
@@ -158,10 +166,13 @@ same tick (other PRs, Learn, Replenish).
 Fix it (or record a maintainer-design blocker on that PR only), verify, then
 proceed to the next PR and to Learn → Replenish.
 
-**Sweep log summary table:** At the end of a single-project tick, append its
-summary directly. During a multi-project sweep, each project subagent returns
-its row to the main agent without writing the global table; the main agent
-appends one combined table only after reviewing every receipt. Use
+**Operational sweep log summary:** At the end of a single-project tick, append
+its summary directly. This log artifact is separate from and cannot replace the
+user-facing report in the
+[sweep output contract](../references/sweep-output-contract.md). During a
+multi-project sweep, each project subagent returns its row to the main agent
+without writing the global table; the main agent appends one combined table
+only after reviewing every receipt. Use
 `scripts/sweep-log-summary.sh` (fixed-width box table in the log) with columns:
 Project, Open, Healthy, Maintain, Action, Self Learning.
 
@@ -195,10 +206,17 @@ Replenish first so Action and Self Learning describe the whole sweep.
    read each issue body and comments for explicit PR links; search open PRs by
    issue number, distinctive title phrases, error text, and affected paths; and
    inspect any likely match's state, files, and reviews. Then implement the
-   narrow qualified candidate, validate it, sign and publish it, and inspect
-   the new head's review and CI state. Continue until the target is met, a verified maximum is reached, or no
-   qualified non-overlapping candidate exists. Report exact evidence for any
-   unfilled slot; do not stop at a status table while safe work remains.
+   narrow qualified candidate and validate it. By default, select at most one
+   candidate per repository for signing and public publication in a rolling
+   24-hour window. Immediately before publishing, query live authored PRs in
+   open, merged, and closed states and record the newest creation timestamp;
+   current open count does not prove the window elapsed. Then inspect the new
+   head's review and CI state. Resume another publication only after both the
+   window has elapsed and executed CI or maintainer feedback supplies a
+   meaningful signal. Explicit batch approval supported by repository evidence
+   may override the default. A target count alone is not batch approval. Report
+   remaining validated work as paced continuation and exact blockers for
+   unavailable slots; do not present local work as an open contribution.
 
 ## Replenishment invariants
 
@@ -206,16 +224,21 @@ Replenish first so Action and Self Learning describe the whole sweep.
   evidence about that candidate only. Immediately screen the next candidate;
   it is never a reason to end a sweep while slots remain.
 - Do not wait for CI, review, or merge of one contribution before researching,
-  implementing, validating, and publishing another independent contribution.
+  implementing, or validating another independent contribution. Do pace public
+  publication: one new PR per repository in any rolling 24-hour window by
+  default, followed by a meaningful CI or maintainer signal before the next PR.
+  Starting a new sweep does not reset the window.
 - A failing, rerunning, conflicted, or review-blocked authored PR is its own
   maintenance workstream, not evidence that the whole queue is unhealthy.
   Continue filling independent slots after its safe maintenance action is done.
 - Before ending below target, record the complete candidate set screened in
-  this run and a concrete disqualifier for every remaining candidate. "Need
-  maintainer direction" is not a queue-wide blocker; continue with other work.
+  this run, each concrete disqualifier, and any qualified work deferred by
+  publication pacing. "Need maintainer direction" is not a queue-wide blocker;
+  continue with local work without creating a burst of public PRs.
 - Stop below target only for a verified project/contributor maximum, no
   remaining qualified non-overlapping candidates after the complete screen, or
-  a blocking authority/environment condition that prevents every candidate.
+  a blocking authority/environment condition that prevents every candidate,
+  or the default rolling publication limit.
 
 Do not create an additional PR merely to hit a number. The quality bar,
 overlap screen, project policy, and truthful evidence gate remain in force.

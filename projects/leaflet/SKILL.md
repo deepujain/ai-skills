@@ -13,6 +13,8 @@ Read [the shared contribution protocol](../../references/contribution-quality.md
 [the queue policy](references/queue-policy.md) before selecting or changing an
 issue. Add durable outcome evidence to
 [the learning log](references/learning-log.md).
+Every Leaflet `sweep` includes Maintain, Learn, and Replenish and must use the
+shared [sweep output contract](../../references/sweep-output-contract.md).
 
 ## Contribution contract
 
@@ -90,6 +92,18 @@ issue. Add durable outcome evidence to
 - Target five healthy open contributions unless live repository policy or the
   user sets a lower cap. Fill only with independently validated, non-overlapping
   work; record evidence-backed blockers instead of manufacturing quota work.
+- Publish at most one new Leaflet PR in any rolling 24-hour window. Starting a
+  new sweep does not reset the window. Before publishing another, require both
+  the elapsed window and an executed CI result or maintainer response. An
+  `action_required` run with no jobs is not a meaningful signal.
+- Check creation timestamps for recent authored Leaflet PRs in open, merged, and
+  closed states immediately before publication; the open queue count alone does
+  not prove that the 24-hour window elapsed.
+- Compare every prospective title and body with recent authored Leaflet PRs.
+  Repeated paragraph order or interchangeable sentence scaffolding is a stop
+  signal. Write from the distinct failure, root cause, owning change, preserved
+  behavior, focused regression, and risk; do not use cosmetic paraphrasing to
+  make a shared template look different.
 - Refresh issue and PR state immediately before implementation and again before
   push or PR creation.
 

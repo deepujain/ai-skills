@@ -55,12 +55,16 @@ failures, synchronize an out-of-date branch, verify signatures, push a valid
 fix, or record a concrete external blocker. A fresh pending check is a state to
 monitor, never a reason to skip another PR or end the sweep early.
 
-When a project has a queue target, finish maintenance first and then replenish
-to that target in the same run whenever policy and qualified non-overlapping
-work permit it. A candidate, local branch, or status table does not fill a
-queue slot. Send the report only as a handoff after the per-PR action loop and
-the replenishment loop reach a real terminal condition; do not use a report as
-a checkpoint that requires the user to say "continue".
+When a project has a queue target, finish maintenance first and then advance
+replenishment whenever policy and qualified non-overlapping work permit it. The
+target is not a batch-publication quota. Unless the user explicitly requests a
+batch and repository evidence supports it, publish at most one new PR per
+repository in any rolling 24-hour window. A new sweep does not reset the
+window. Before the next publication, require both the elapsed window and a
+meaningful result from the prior PR, such as executed CI or maintainer feedback.
+Continue independent screening and local validation, but do not count a
+candidate, local branch, or status table as an open slot. Record remaining
+qualified work as paced continuation rather than manufacturing a burst.
 
 After contributor-actionable maintenance, run a bounded learning scan when new
 PR outcomes, reviewer feedback, policy, or CI behavior could change the next
@@ -241,6 +245,16 @@ For patch trackers, adapt the same content to the ticket comment or cover
 letter. Keep descriptions factual and command-driven. Avoid private tool
 attribution, hype, and vague "tests pass" claims.
 
+Before publishing a second PR to the same repository, compare its title and
+body with the contributor's recent open PRs. Required upstream headings and
+genuinely shared commands may repeat, but the narrative must be shaped by that
+change's own evidence: the observed failure, root cause, owning boundary,
+preserved behavior, focused proof, and specific risk. Do not publish a run of
+descriptions with the same paragraph order and interchangeable sentence
+scaffold. Cosmetic synonyms, reordered sentences, or arbitrary paragraph-count
+changes do not make templated submissions distinct; defer the later PR under
+the publication-pacing rule instead.
+
 **Typography for GitHub-facing text:** Never use the em dash character (`U+2014`) in
 anything Skippy drafts or publishes to GitHub. This includes issue and PR titles
 and bodies, descriptions, comments, reviews, inline threads, replies, commit
@@ -249,14 +263,12 @@ sentence instead. Check the final rendered text immediately before publishing.
 
 ## Open PR Sweep Report
 
-When sweeping open PRs, report every PR so skipped work is visible:
-
-| PR | Requested Action Found | CI / Failures | Reviews / Bots | Stale or Conflict State | Action Taken | Final State |
-| --- | --- | --- | --- | --- | --- | --- |
-| #NNN title | CI failure / review / stale ping / none | green, failing job, or rerunning | addressed / stale / blocked / n/a | clean / stale / conflict | pushed fix / posted status / no action | ready / rerunning / blocked |
-
-Categorize review comments by reviewer identity when practical. Separate human
-review, project bots, and AI review bots because the right response differs.
+Every contribution-queue sweep must use the single canonical
+[sweep output contract](sweep-output-contract.md). It requires one row per open
+PR, exact review attribution, a dedicated Greptile column, current stale and
+merge state, all three sweep phases, receipts, and external blockers. Do not
+invent project-specific headings or replace the report with prose, a PR-link
+list, an artifact list, or the operational sweep-log summary.
 
 ## Cross-Project Contribution Matrix Handoff
 

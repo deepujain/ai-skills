@@ -7,8 +7,10 @@ remembering prose: readiness, fan-out, joins, routing, retries, terminal state,
 and an inspectable event trail.
 
 The canonical graph is [`workflows/skippy-delivery.json`](../workflows/skippy-delivery.json).
-It covers investigation, change, maintenance, and replenishment through one
-shared delivery shape:
+It covers investigation, change, maintenance, replenishment, and a composite
+`sweep` mode through one shared delivery shape. The sweep route fans out current
+system, historical learning, project policy, delivery state, and queue state so
+Maintain, Learn, and Replenish cannot be silently reduced to one phase:
 
 ```text
 request -> frame -> mode router -> evidence fan-out -> join -> plan -> work

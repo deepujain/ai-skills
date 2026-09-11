@@ -72,10 +72,21 @@ force an unfamiliar problem through a generic feature checklist.
 When the user asks to contribute but supplies no issue, route to the
 Contribution queue playbook. Maintain the user's open PRs first, then screen
 and select qualified independent issues instead of returning a status-only
-candidate list. Continue through the complete project contribution recipe until
-the configured target is reached, or record the specific policy, authority,
-environment, overlap, or validation blocker that makes safe replenishment
-impossible.
+candidate list. Advance the complete project contribution recipe toward the
+configured target, but apply the publication-pacing rule: one new PR per
+repository in any rolling 24-hour window by default. Starting a new sweep does
+not reset the window. Record later qualified candidates as paced continuation,
+or record the specific policy, authority, environment, overlap, or validation
+blocker that makes safe replenishment impossible.
+
+**Sweep always includes replenishment.** In an active project context,
+`skippy sweep`, plain `sweep`, `skippy sweep and replenish`, and the common
+misspelling `skippy sweep and replinish` all mean the complete ordered
+`Maintain → Learn → Replenish` lifecycle. Replenishment is a verified no-op when
+the healthy queue already meets its target. Omit it only when the user
+explicitly requests maintenance-only work. Read and obey the canonical
+[sweep output contract](../references/sweep-output-contract.md) before starting
+the run so evidence is collected for its exact final schema.
 
 **Rebase conflicts are maintain work.** When a PR is `mergeable=CONFLICTING`,
 GitHub shows a conflict banner, or `sweep-maintain-pr.sh` logs `REBASE CONFLICT`,
@@ -97,19 +108,37 @@ reply on each thread concisely, and react when the platform allows it. Follow
 feedback unaddressed or answer only with a top-level PR comment.
 
 For a contribution queue, treat every PR and candidate as an independent work
-unit. Never serialize replenishment behind another PR's active CI or review,
-and never terminate a sweep because one candidate is stale or needs direction.
-When below target, keep screening candidates and publish each qualified,
-validated contribution until the target or a verified maximum is reached. A
-below-target handoff must enumerate every screened candidate and its concrete
-disqualifier.
+unit. Do not serialize candidate research or local validation behind another
+PR's active CI or review, but pace public publication separately. A queue target
+is an inventory goal, not permission for a burst: by default, publish at most
+one new PR per repository in any rolling 24-hour window. Starting another
+sweep does not reset the window. Before publishing again, require both the
+elapsed window and a meaningful signal from the prior submission, such as an
+executed CI result or maintainer response. A request to `replenish to X` is not
+itself approval for batch publication. Publish more than one only when the user
+explicitly requests a batch and repository policy or maintainer precedent
+supports it. Record additional qualified work as paced continuation, never as
+an open slot.
+
+Immediately before publication, query live authored PRs in that repository,
+including open, merged, and closed PRs, and compare their creation timestamps.
+Record the newest timestamp in the receipt. Current queue count is not evidence
+that the rolling window has elapsed.
+
+Before publishing another PR to the same repository, compare its title and body
+with the contributor's recent open PRs. Reusing required template headings is
+fine, but repeated paragraph order, sentence scaffolding, and boilerplate
+validation lists are a stop signal. Rewrite from the issue-specific failure,
+root cause, owning change, preserved behavior, focused proof, and risk. Cosmetic
+paraphrasing or merely changing paragraph counts does not satisfy this gate.
 
 Project skills may add repository-specific eligibility gates, but they must not
 turn a failing, rerunning, conflicted, or review-blocked authored PR into a
 queue-wide replenishment stop. Maintain that PR in its own workstream and keep
 screening independent slots. "Queue unhealthy" is not a sufficient blocker;
-only a verified maximum, shared publication/policy restriction, or exhaustion
-of qualified non-overlapping candidates can stop replenishment below target.
+only a verified maximum, shared publication/policy restriction, default
+publication pacing, or exhaustion of qualified non-overlapping candidates can
+stop replenishment below target.
 
 ## Project and specialist skills
 
@@ -172,13 +201,12 @@ Do not report success until all of these are true:
 - The diff was reviewed for behavior, security, compatibility, and cleanup.
 - Delivery state is known: commit, PR, signature, CI, review, and external
   blockers are reported exactly.
-- A completed sweep has one final summary table produced after Maintain, Learn,
-  and Replenish. Its Maintain cell reports branch-update results without log
-  pointers; Action gives one or two concrete lines covering code, CI, review,
-  rebase, and replenishment work actually done; Self Learning gives one or two
-  lines with the durable lesson and exact skill/log update, or an evidence-based
-  `No skill update:` reason. Placeholder text such as `see tick`, `see SWEEP
-  line`, and `see queue-policy` is prohibited.
+- A completed contribution-queue sweep follows the canonical
+  [sweep output contract](../references/sweep-output-contract.md). Draft the
+  final Markdown report, run `python3 scripts/verify_sweep_output.py <file>`,
+  and return the validated report without renaming columns or omitting the
+  Maintain, Learn, or Replenish rows. The fixed-width operational log summary
+  does not replace the user-facing PR table.
 - All outbound GitHub prose contains no em dash character (`U+2014`). This includes
   issue and PR titles and bodies, descriptions, comments, reviews, inline
   threads, replies, commit messages, and release text. Check the final text
@@ -194,7 +222,10 @@ explicitly requested cadence instead.
 - `skippy mode <outcome>`
 - `run this with skippy`
 - `continue skippy`
+- `skippy sweep`
+- `sweep` (when the active thread identifies a configured project)
 - `skippy sweep and replenish`
+- `skippy sweep and replinish`
 - `skippy bootstrap <repository URL>`
 - `bootstrap <project slug> <repository URL>`
 - `skippy learn <project>`

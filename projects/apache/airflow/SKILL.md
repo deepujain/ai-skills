@@ -248,22 +248,17 @@ whether the contribution survived in another PR. Include a departed-PR table
 before the open-PR table whenever anything merged or closed since the previous
 sweep.
 
-Use this table format for Airflow open-PR sweeps unless the user explicitly asks for a different format:
-
-| PR | Requested Action Found | CI / Failures | Review Comments | Stale / Merge State | Greptile | Action Taken | Final State |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| #NNNN title | stale ping / CI failure / bot comment / conflict / none | green or failing check names | `github-actions[bot]` / CI bot: addressed / not addressed / n/a; `pre-commit-ci[bot]`: addressed / not addressed / n/a; `greptile-apps[bot]` / CodeRabbit / AI review bot if present: addressed / not addressed / n/a; `human: <name>`: addressed / not addressed / blocked / n/a | clean / mergeable / conflicting / stale ping timestamp | N/5 or n/a | pushed fix / posted status / added rocket / no action needed | green / rerunning / blocked |
-
-For the `Review Comments` column, always categorize by reviewer identity rather than giving only a total count. Include each bot type separately when present, and include human reviewers by GitHub login or display name. Use short statuses such as `addressed`, `already addressed`, `stale`, `informational`, `not addressed`, or `blocked: needs maintainer decision`.
+Every Airflow sweep, including plain `sweep`, uses the shared
+[sweep output contract](../../../references/sweep-output-contract.md). Do not
+rename its columns or substitute an Airflow-specific table. In `Review
+Comments`, identify GitHub Actions and CI bots, pre-commit-ci, Greptile,
+CodeRabbit, other AI review bots, and human reviewers separately when present.
 
 ### Sweep lessons learned and automatic skill updates
 
-End every repeated sweep with a Lessons Learned table after the departed/open
-PR tables:
-
-| Evidence Observed | Reusable Lesson | Skill Update | Validation / Publication |
-| --- | --- | --- | --- |
-| concrete CI, review, merge, closure, or workflow evidence | concise rule that would change future Airflow work, or `none` | exact section/rule updated, or `no skill change needed` | validation result and skill-repository commit, or reason no commit was made |
+Record Airflow learning evidence in the canonical `Learn` phase row and put the
+exact skill/log update and validation under `Validation and receipts`. Do not
+append a project-specific lessons table to the final response.
 
 Apply this learning loop on every sweep, not only when a PR disappears:
 
@@ -284,10 +279,10 @@ Apply this learning loop on every sweep, not only when a PR disappears:
 5. Commit and push the validated update to the skill repository automatically.
    Preserve unrelated worktree changes, stage only the intended skill file,
    verify the staged file list before committing, and report the resulting
-   commit SHA in the Lessons Learned table. If push or validation is blocked,
+   commit SHA in `Validation and receipts`. If push or validation is blocked,
    keep the change local and report the exact blocker.
-6. When no reusable lesson exists, include one table row that says
-   `no skill change needed` and gives the concrete reason. Never manufacture a
+6. When no reusable lesson exists, say `no skill change needed` with the
+   concrete reason in the canonical `Learn` phase row. Never manufacture a
    lesson merely to produce a commit.
 
 ### Sweep queue replenishment
@@ -308,8 +303,11 @@ invoked manually or by a scheduled task.
   unhealthy.
 - If the applicable count and queue-health gates pass, pick **one** new
   well-scoped issue using the normal Airflow issue-selection rules in this skill
-  and run the full new-PR recipe in the same sweep. Never start more than one
-  new Airflow PR per sweep.
+  and run the full new-PR recipe. Publish at most one new Airflow PR in any
+  rolling 24-hour window by default; a new sweep does not reset the window.
+  Immediately before publication, check authored Airflow PR creation timestamps
+  in open, merged, and closed states. Before another PR, require both the elapsed
+  window and executed CI or maintainer feedback.
 - Report the outcome explicitly in the sweep output: `opened new PR`,
   `issue selected, PR in progress`, or `replenishment skipped` with the exact
   blocker such as duplicate risk, queue not healthy, no accepted issue, or no

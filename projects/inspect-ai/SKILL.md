@@ -16,6 +16,8 @@ Also apply the shared OSS contribution quality protocol in
 [../../references/contribution-quality.md](../../references/contribution-quality.md).
 Project-specific instructions below override the shared protocol when they
 conflict.
+Every Inspect AI `sweep` includes Maintain, Learn, and Replenish and must use
+the shared [sweep output contract](../../references/sweep-output-contract.md).
 
 Use this recipe for [UKGovernmentBEIS/inspect_ai](https://github.com/UKGovernmentBEIS/inspect_ai), the Inspect AI evaluation framework. Follow the upstream contributor guide closely: agree direction in an issue when required, claim accepted work, branch, code, run `make check`, run `make test`, then open a ready-for-review PR.
 

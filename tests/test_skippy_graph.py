@@ -153,6 +153,23 @@ class CanonicalWorkflowTests(unittest.TestCase):
         self.assertIn("node_joined", event_types)
         self.assertIn("node_routed", event_types)
 
+    def test_sweep_mode_fans_out_maintenance_learning_and_queue_evidence(self) -> None:
+        self.frame("sweep")
+        expected = {
+            "current-system",
+            "historical-intent",
+            "project-contract",
+            "delivery-state",
+            "queue-state",
+        }
+        self.assertEqual(self.run.ready, expected)
+        for node in sorted(expected):
+            self.run.complete(node, EVIDENCE)
+        self.assertEqual(self.run.ready, {"plan"})
+        self.assertEqual(
+            set(self.run.state["nodes"]["evidence-join"]["output"]), expected
+        )
+
     def test_failed_proof_routes_through_repair_and_reverification(self) -> None:
         self.reach_verification()
         self.run.complete(

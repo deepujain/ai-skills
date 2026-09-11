@@ -137,21 +137,12 @@ repository. Do not overfit unexplained closures; report `no skill change needed`
 when there is no reusable lesson. Include a departed-PR table before the open-PR
 table whenever anything merged or closed since the previous sweep.
 
-Use this table format for Spark open-PR sweeps unless the user explicitly asks for a different format:
-
-| PR | Requested Action Found | CI / Failures | Review Comments | Stale / Merge State | Greptile | Action Taken | Final State |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| #NNNN title | stale ping / CI failure / bot comment / conflict / none | green or failing check names | `github-actions[bot]` / CI bot: addressed / not addressed / n/a; `sparkqa` / Jenkins bot if present: addressed / not addressed / n/a; `greptile-apps[bot]` / CodeRabbit / AI review bot if present: addressed / not addressed / n/a; `human: <name>`: addressed / not addressed / blocked / n/a | clean / mergeable / conflicting / stale ping timestamp | N/5 or n/a | pushed fix / posted status / added rocket / no action needed | green / rerunning / blocked |
-
-After every Spark sweep, include a second short table titled **Lessons Learned / Skill Updates** after the PR table:
-
-| Evidence | Lesson | Skill Update | Validation / Publish |
-| --- | --- | --- | --- |
-| PRs/checks/comments inspected | reusable workflow, CI, review, testing, duplicate, or closure lesson; or `none` | exact section updated in this skill; or `no skill change needed` with a reason | validation command and commit/push status; or `not applicable` |
-
-Populate at least one row. If there is no durable lesson, say `none` and explain why no skill change was needed. If there is an evidence-backed reusable lesson, update **Lessons learned (from real Spark contributions)** in this skill during the same sweep, keep the new rule short and imperative, validate the skill with `python3 /Users/dejain/.codex/skills/.system/skill-creator/scripts/quick_validate.py <skippy-root>/oss/apache/spark`, then commit and push only the skill change from the Skippy repository. Do not batch unrelated local edits into the skill commit.
-
-For the `Review Comments` column, always categorize by reviewer identity rather than giving only a total count. Include each bot type separately when present, and include human reviewers by GitHub login or display name. Use short statuses such as `addressed`, `already addressed`, `stale`, `informational`, `not addressed`, or `blocked: needs maintainer decision`.
+Every Spark sweep uses the shared
+[sweep output contract](../../../references/sweep-output-contract.md). Identify
+GitHub Actions, Spark QA or Jenkins, Greptile, CodeRabbit, other AI review bots,
+and human reviewers separately in `Review Comments`. Record learning and skill
+updates in the canonical `Learn` phase row and `Validation and receipts`
+section, not in a project-specific table.
 
 ### Sweep replenishment after merge
 

@@ -19,7 +19,10 @@ Maintain **4 healthy open contributions** for contributor `deepujain` on
 Respect the 4-PR cap for non-write-access contributors.
 
 Reconcile departed PRs, maintain every authored open PR, run the bounded learning
-scan, then fill each eligible missing slot with accepted, non-overlapping issues.
+scan, then advance each eligible missing slot with accepted, non-overlapping
+issues. Publish at most one new Inspect AI PR in any rolling 24-hour window by
+default; a new tick does not reset the window. Record later qualified work as
+paced continuation.
 
 **Non-interactive maintenance (required):**
 - Rebase stale PR bases with local worktree rebase + SSH push to `fork` when

@@ -1,5 +1,38 @@
 # ts-mono learning log
 
+## 2026-09-10: distinguish worktree serialization from package concurrency
+
+Sources: `/Users/dejain/nvidia/oss/.skippy/tasks/ts-mono-sweep-20260910-172611.md`
+and https://github.com/meridianlabs-ai/ts-mono/pull/632
+Classification: repeated local validation behavior with a pending peer repair
+Observation: After sibling worktree suites were serialized, the first cold
+root runs on #569 and #570 still timed out in Scout
+`useColumnSizing.test.ts` because one Turbo graph runs package tests
+concurrently. The exact file passed 10/10 in isolation and each unchanged
+branch then passed all 9 root tasks. Open peer PR #632 independently replaces
+the dynamic hook import, but that repair is not yet accepted on `main`.
+Adopted rule: Serialize full graphs across worktrees, but classify this exact
+current-main timeout with an isolated-file proof and one branch rerun. Do not
+transplant the pending fixture change into unrelated PRs.
+Next action: Remove the baseline-workaround guidance if the fixture repair
+lands on `main`; until then, require both rerun proofs and exact-head hosted CI.
+
+## 2026-09-10: serialize full-workspace tests across local worktrees
+
+Sources: `/Users/dejain/nvidia/oss/.skippy/tasks/ts-mono-sweep.md` and
+`/Users/dejain/nvidia/oss/.skippy/tasks/ts-mono-sweep-20260910-102212.md`
+Classification: repeated local validation behavior
+Observation: Two parallel multi-worktree root test passes produced unrelated
+Scout hook timeouts. In the latest pass,
+`useColumnSizing.test.ts` timed out during the #628 root run, then passed 10/10
+in isolation and the unchanged branch passed all 9 root test tasks when rerun
+alone.
+Adopted rule: Run full `pnpm test` graphs serially across local worktrees. If a
+hook timeout appears under shared-host contention, rerun the exact test file in
+isolation and then rerun that branch alone before treating it as a code defect.
+Next action: Keep focused tests parallel when safe, but serialize full workspace
+test graphs during future ts-mono sweeps.
+
 ## 2026-09-09: defend log-authored input at shared boundaries
 
 Sources: https://github.com/meridianlabs-ai/ts-mono/pull/621 and

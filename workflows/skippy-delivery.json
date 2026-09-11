@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "skippy-delivery",
-  "description": "Host-neutral control graph for investigation, change, maintenance, and replenishment work.",
+  "description": "Host-neutral control graph for investigation, change, maintenance, replenishment, and complete sweep work.",
   "input_schema": {
     "type": "object",
     "required": ["outcome", "preserve"],
@@ -25,7 +25,7 @@
           "outcome": {"type": "string", "minLength": 1},
           "done_means": {"type": "array", "minItems": 1, "items": {"type": "string"}},
           "preserve": {"type": "array", "items": {"type": "string"}},
-          "mode": {"type": "string", "enum": ["investigate", "change", "maintain", "replenish"]},
+          "mode": {"type": "string", "enum": ["investigate", "change", "maintain", "replenish", "sweep"]},
           "risk": {"type": "string", "enum": ["low", "medium", "high", "unknown"]}
         },
         "additionalProperties": false
@@ -364,11 +364,11 @@
     {"from": "frame", "to": "mode-router"},
     {"from": "frame", "to": "blocked", "on": "error"},
 
-    {"from": "mode-router", "to": "current-system", "when": {"in": ["investigate", "change", "maintain"]}},
-    {"from": "mode-router", "to": "historical-intent", "when": {"in": ["investigate", "change", "replenish"]}},
-    {"from": "mode-router", "to": "project-contract", "when": {"in": ["investigate", "change", "maintain", "replenish"]}},
-    {"from": "mode-router", "to": "delivery-state", "when": {"equals": "maintain"}},
-    {"from": "mode-router", "to": "queue-state", "when": {"equals": "replenish"}},
+    {"from": "mode-router", "to": "current-system", "when": {"in": ["investigate", "change", "maintain", "sweep"]}},
+    {"from": "mode-router", "to": "historical-intent", "when": {"in": ["investigate", "change", "replenish", "sweep"]}},
+    {"from": "mode-router", "to": "project-contract", "when": {"in": ["investigate", "change", "maintain", "replenish", "sweep"]}},
+    {"from": "mode-router", "to": "delivery-state", "when": {"in": ["maintain", "sweep"]}},
+    {"from": "mode-router", "to": "queue-state", "when": {"in": ["replenish", "sweep"]}},
     {"from": "mode-router", "to": "blocked", "when": {"default": true}},
 
     {"from": "current-system", "to": "evidence-join"},

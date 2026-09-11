@@ -44,3 +44,17 @@ Sources: [#10369 run](https://github.com/Leaflet/Leaflet/actions/runs/3441769254
 [#10371 run](https://github.com/Leaflet/Leaflet/actions/runs/34417692509),
 [#10372 run](https://github.com/Leaflet/Leaflet/actions/runs/34417694948),
 [#10373 run](https://github.com/Leaflet/Leaflet/actions/runs/34417695684).
+
+## 2026-09-10 sweep
+
+- Maintainer feedback on PR #10373 explicitly connected five PRs submitted in
+  a short period, each with the same two-paragraph narrative shape, to an
+  authenticity concern. Treat the configured queue target as paced inventory,
+  not a burst quota: publish at most one new Leaflet PR in any rolling 24-hour
+  window, which a new sweep does not reset, and require executed CI or
+  maintainer feedback before the next.
+- Do not respond by cosmetically varying paragraph counts. Compare prospective
+  bodies with recent authored PRs and make each description follow its distinct
+  failure, root cause, owning change, preserved behavior, proof, and risk.
+
+Source: [PR #10373 maintainer comment](https://github.com/Leaflet/Leaflet/pull/10373#issuecomment-5619108743).

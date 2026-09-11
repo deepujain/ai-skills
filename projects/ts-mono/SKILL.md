@@ -15,6 +15,8 @@ Use [the project learning log](references/learning-log.md) with the shared
 outcomes or periodic project scans.
 Use [the queue policy](references/queue-policy.md) before a scheduled or manual
 sweep and replenish run.
+Every ts-mono `sweep` includes Maintain, Learn, and Replenish and must use the
+shared [sweep output contract](../../references/sweep-output-contract.md).
 
 ## Bootstrap status
 
@@ -40,6 +42,12 @@ remaining live-GitHub unknowns.
   `pnpm lint`, `pnpm typecheck`, `pnpm format:check`,
   `pnpm suppressions:check`, `pnpm build`, and the relevant `pnpm e2e` lane
   when the changed boundary requires them.
+- During local multi-PR maintenance, run full `pnpm test` graphs serially
+  across worktrees. One root Turbo graph still runs packages concurrently and
+  can surface the current-main Scout `useColumnSizing.test.ts` hook timeout on
+  a cold run. Rerun that exact file in isolation, then the affected branch
+  alone; when both pass and contribution-owned tests have no failures, do not
+  copy an unmerged fixture repair into an unrelated contribution.
 - Scope commands through root scripts, for example
   `pnpm test --filter=@meridianlabs/log-viewer` or
   `pnpm dev --filter=scout`.

@@ -55,11 +55,21 @@ non-overlapping candidate after a complete screen.
 4. Count healthy open contributions against the configured target, or the
    default target of 5, and the verified maximum.
 5. For each missing slot, screen candidates for issue/PR/file overlap and linked
-   development, then complete the full project-specific contribution recipe.
-6. Stop only when the target is met, the maximum is reached, or evidence shows
-   no qualified non-overlapping candidate or a concrete external blocker.
-7. Record each slot as open, in progress, or unavailable with evidence. A
-   candidate list, local branch, or status-only report never fills a slot.
+   development, then complete local implementation and validation independently.
+6. Immediately before publication, query live authored PRs in that repository,
+   including open, merged, and closed states, and record the newest creation
+   timestamp. Do not infer cadence from the current open count.
+7. Publish at most one new PR per repository in any rolling 24-hour window by
+   default. Starting a new sweep does not reset the window. A target count is not
+   batch-publication approval. Before publishing again, require both the elapsed
+   window and executed CI or maintainer feedback; explicit batch approval backed
+   by repository evidence may override the default.
+8. Stop when the target or maximum is reached, no qualified non-overlapping
+   candidate remains, a concrete external blocker applies, or the sweep's
+   publication limit is reached.
+9. Record each slot as open, paced continuation, in progress, or unavailable
+   with evidence. A candidate list, local branch, or status-only report never
+   fills a slot.
 
 ## Scheduling
 
